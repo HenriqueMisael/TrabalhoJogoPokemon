@@ -16,6 +16,17 @@ public abstract class Jogador {
         listaPokemons.add(pokemon);
     }
     
+    public boolean temPokemonUtilizavel() {        
+        for( Pokemon p : listaPokemons )
+            if(p.getStatus() != pokemon.Status.FAINTED)
+                return true;
+        return false;        
+    }
+    
+    public Pokemon getProximoPokemon() {
+        return listaPokemons.get(0);
+    }
+    
     //METODOS
     public void trocarPokemon(Pokemon pokemon){
 
@@ -25,7 +36,7 @@ public abstract class Jogador {
 
     }
     
-    public abstract void escolherComando();
+    public abstract AcaoJogador escolherComando();
     
     @Override
     public String toString() {
