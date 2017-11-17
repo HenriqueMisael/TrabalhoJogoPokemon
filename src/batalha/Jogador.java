@@ -13,7 +13,7 @@ public abstract class Jogador {
     
     //CONSTRUTOR
     public void adicionarPokemon(Pokemon pokemon){
-    	listaPokemons.add(pokemon);
+        listaPokemons.add(pokemon);
     }
     
     //METODOS
@@ -29,13 +29,13 @@ public abstract class Jogador {
     
     @Override
     public String toString() {
-    	
-    	String retorno = "";
-    	
-    	for(Pokemon p:listaPokemons) {
-    		retorno += p.toString();
-    	}
-		return retorno;
+        
+        String retorno = "";
+        
+        for(Pokemon p:listaPokemons) {
+            retorno += p.toString();
+        }
+        return retorno;
     }
 }
 
