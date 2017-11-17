@@ -7,7 +7,7 @@ import batalha.Batalha;
 import batalha.Jogador;
 import batalha.JogadorHumano;
 import batalha.JogadorMaquina;
-import batalha.Pokemon;
+import pokemon.Pokemon;
 
 public class TrabalhoJavaPokemon {
 
