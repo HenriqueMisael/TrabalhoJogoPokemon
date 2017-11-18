@@ -12,15 +12,23 @@ import pokemon.Pokemon;
 public class TrabalhoJavaPokemon {
 
     public static void main(String[] args) {
+    	
+    	TabelaDeEspecies tabelaEspecies = new TabelaDeEspecies("Tabela_Especies.txt");
+    	TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");    	
+    	System.out.println("Especie Pokemon: "+tabelaEspecies.getEspecie(150)); //Print teste
+    	System.out.println("Nome Ataque: "+tabelaAtaques.getNome(1)); //Print teste
 
         Queue<Integer> argumentos = new LinkedList<Integer>();
         Batalha batalha;
         Jogador p1, p2;
         
+        args[0] = "0";
+        args[1] = "0"; 
+        
         for( String a:args ) {
             argumentos.add(Integer.parseInt(a));
         }
-        
+       
         p1 = retornaJogadorConformeTipo( argumentos.remove() );
         montaTimePokemon(p1, argumentos, argumentos.remove());
         
@@ -29,8 +37,11 @@ public class TrabalhoJavaPokemon {
         
         batalha = new Batalha( p1, p2 );
         batalha.start();
-    	batalha.carregarTableas();
+    	
+    	
+    	
     }
+    
 
     private static Jogador retornaJogadorConformeTipo(int tipoJogador) {
         
