@@ -9,8 +9,8 @@ public class JogadorMaquina extends Jogador{
     }    
     
     @Override
-    public void escolherComando(){
-        
+    public AcaoJogador escolherComando(){
+    		return null;
     }
     
     @Override

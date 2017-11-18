@@ -12,7 +12,7 @@ import pokemon.Pokemon;
 public class TrabalhoJavaPokemon {
 
     public static void main(String[] args) {
-        
+
         Queue<Integer> argumentos = new LinkedList<Integer>();
         Batalha batalha;
         Jogador p1, p2;
@@ -29,6 +29,7 @@ public class TrabalhoJavaPokemon {
         
         batalha = new Batalha( p1, p2 );
         batalha.start();
+    	batalha.carregarTableas();
     }
 
     private static Jogador retornaJogadorConformeTipo(int tipoJogador) {

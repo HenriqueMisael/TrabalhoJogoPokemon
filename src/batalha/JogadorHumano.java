@@ -9,9 +9,10 @@ public class JogadorHumano extends Jogador{
     }
     
     @Override
-    public void escolherComando(){
-        
+    public AcaoJogador escolherComando(){
+        return null;
     }
+    
     @Override
     public String toString() {
         return "humano\n" + super.toString();
