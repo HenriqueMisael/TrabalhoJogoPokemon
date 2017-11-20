@@ -2,17 +2,11 @@ package batalha;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
 
 public class Batalha {
 
 	//ATRIBUTOS
     Jogador time1, time2;
-    private String[][] tabelaPokemons = new String[151][9];
-    private String[][] tabelaAtaques = new String[165][8];
     
     //CONSTRUTOR
     public Batalha(Jogador p1, Jogador p2) {
