@@ -52,18 +52,18 @@ public class TrabalhoJavaPokemon {
     private static void montaTimePokemon(Jogador p, Queue<Integer> argumentos, int quantidadePokemons) {        
 
         Especie especie;
-        int especieId = argumentos.remove();
-        
-        especie = new Especie( especieId, tabelaEspecies.getEspecie(especieId),
-                                          tabelaEspecies.getTipo1(especieId),
-                                          tabelaEspecies.getTipo2(especieId),
-                                          tabelaEspecies.getBaseHP(especieId),
-                                          tabelaEspecies.getBaseATK(especieId), 
-                                          tabelaEspecies.getBaseDEF(especieId), 
-                                          tabelaEspecies.getBaseSPE(especieId),
-                                          tabelaEspecies.getBaseSPD(especieId));
+        int especieId;
         
         for( int i = 0; i < quantidadePokemons; i++ ) {
+        	especieId = argumentos.remove();            
+            especie = new Especie( especieId, tabelaEspecies.getEspecie(especieId),
+                                              tabelaEspecies.getTipo1(especieId),
+                                              tabelaEspecies.getTipo2(especieId),
+                                              tabelaEspecies.getBaseHP(especieId),
+                                              tabelaEspecies.getBaseATK(especieId), 
+                                              tabelaEspecies.getBaseDEF(especieId), 
+                                              tabelaEspecies.getBaseSPE(especieId),
+                                              tabelaEspecies.getBaseSPD(especieId));
             p.adicionarPokemon(new Pokemon(especie,argumentos.remove(),argumentos.remove(),argumentos.remove(),argumentos.remove(),argumentos.remove()));
         }
     }
