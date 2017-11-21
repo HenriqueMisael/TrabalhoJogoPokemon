@@ -51,11 +51,47 @@ public class TabelaDeEspecies {
 	}
 	
 	public Tipo getTipo1(int id) {
-		return Tipo.valueOf(tabelaPokemons[id-1][2]);
+		String tipoNaTabela = tabelaPokemons[id-1][2];
+		switch (tipoNaTabela) {
+			case "Bug": return Tipo.BUG;
+			case "Dragon": return Tipo.DRAGON;
+			case "Eletric": return Tipo.ELETRIC;
+			case "Fighting": return Tipo.FIGHTING;
+			case "Fire": return Tipo.FIRE;
+			case "Flying": return Tipo.FLYING;
+			case "Ice": return Tipo.ICE;
+			case "Ghost": return Tipo.GHOST;
+			case "Grass": return Tipo.GRASS;
+			case "Ground": return Tipo.GROUND;
+			case "Normal": return Tipo.NORMAL;
+			case "Poison": return Tipo.POISON;
+			case "Psychic": return Tipo.PSYCHIC;
+			case "Rock": return Tipo.ROCK;
+			case "Water": return Tipo.WATER;
+		}
+		return Tipo.NONE;
 	}
 	
 	public Tipo getTipo2(int id) {
-		return Tipo.valueOf(tabelaPokemons[id-1][3]);
+		String tipoNaTabela = tabelaPokemons[id-1][3];
+		switch (tipoNaTabela) {
+			case "Bug": return Tipo.BUG;
+			case "Dragon": return Tipo.DRAGON;
+			case "Eletric": return Tipo.ELETRIC;
+			case "Fighting": return Tipo.FIGHTING;
+			case "Fire": return Tipo.FIRE;
+			case "Flying": return Tipo.FLYING;
+			case "Ice": return Tipo.ICE;
+			case "Ghost": return Tipo.GHOST;
+			case "Grass": return Tipo.GRASS;
+			case "Ground": return Tipo.GROUND;
+			case "Normal": return Tipo.NORMAL;
+			case "Poison": return Tipo.POISON;
+			case "Psychic": return Tipo.PSYCHIC;
+			case "Rock": return Tipo.ROCK;
+			case "Water": return Tipo.WATER;
+		}
+		return Tipo.NONE;
 	}
 	
 	public int getBaseHP(int id) {
