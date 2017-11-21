@@ -62,14 +62,6 @@ public class Pokemon {
         this.hpAtual = hpAtual;
     }
 
-    public int getModifierAccuracy() {
-        return modifierAccuracy;
-    }
-
-    public void setModifierAccuracy(int modifierAccuracy) {
-        this.modifierAccuracy = modifierAccuracy;
-    }
-
     public boolean isConfusion() {
         return confusion;
     }
@@ -126,6 +118,10 @@ public class Pokemon {
         return ataque4;
     }
     
+    public int getModifierAccuracy() {
+        return modifierAccuracy;
+    }
+
     public int getModifierEvasion() {
         return modifierEvasion;
     }
@@ -145,7 +141,31 @@ public class Pokemon {
     public int getModifierSpd() {
         return modifierSpd;
     }
+    
+    public void modifyModifierAccuracy(int amount) {
+    	modifierAccuracy += amount;
+    }
 
+    public void modifyModifierEvasion(int amount) {
+    	modifierEvasion += amount;
+    }
+
+    public void modifyModifierAtk(int amount) {
+    	modifierAtk += amount;
+    }
+
+    public void modifyModifierDef(int amount) {
+    	modifierDef += amount;
+    }
+
+    public void modifyModifierSpe(int amount) {
+    	modifierSpe += amount;
+    }
+
+    public void modifyModifierSpd(int amount) {
+    	modifierSpd += amount;
+    }
+    
     @Override
     public String toString() {
         
@@ -162,4 +182,11 @@ public class Pokemon {
     public Especie getEspecie() {
         return especie;
     }
+
+	public void reduzHp(double dano) {
+		hpAtual = Double.max(hpAtual-dano,0);
+		
+		if(hpAtual == 0)
+			status = Status.FAINTED;		
+	}
 }

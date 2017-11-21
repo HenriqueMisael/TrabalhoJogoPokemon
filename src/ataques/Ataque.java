@@ -6,7 +6,7 @@ import pokemon.Pokemon;
 import pokemon.Status;
 import pokemon.Tipo;
 
-public abstract class Ataque {
+public class Ataque {
 
     private int id;
     private String nome;
@@ -16,7 +16,13 @@ public abstract class Ataque {
     private double accuracy;
     private Tipo tipo;
     
-    public abstract void efeito();
+    public void efeito(Pokemon atacante, Pokemon atacado) {
+    	currentPowerPoints--;
+
+    	if( calculoAcerto(atacante, atacado) ) {
+    		atacado.reduzHp(calculoDano( atacante, atacado ));
+    	}    	
+    }
     
     public int getId() {
         return id;
@@ -26,32 +32,22 @@ public abstract class Ataque {
         return nome;
     }
     
-    public boolean usaAtaque() {
-        if(currentPowerPoints==0)
-            return false;
-        currentPowerPoints--;
-        return true;
-    }
-    
     public void restauraAtaques() {
         currentPowerPoints = maxPowerPoints;
     }
     
-    public boolean calculoAcerto(Pokemon atacante, Pokemon atacado) {
+    private boolean calculoAcerto(Pokemon atacante, Pokemon atacado) {
         
-        Random r = new Random();
         double accuracy, evasion;
-        double dice = 0 + ( 100-0 )*r.nextDouble();
         
         accuracy = retornaValorConformeModificador(atacante.getModifierAccuracy());
         evasion = retornaValorConformeModificador(atacado.getModifierEvasion());
         
-        return (this.accuracy*(accuracy/evasion)) >= dice;
+        return util.Probabilidade.calcula(this.accuracy*(accuracy/evasion));
     }
 
-    public double calculoDano(Pokemon atacante, Pokemon atacado) {
+    private double calculoDano(Pokemon atacante, Pokemon atacado) {
         
-        Random r = new Random();
         double modificadorLevel, danoBase, attack, defense;
         
         modificadorLevel = atacante.getLevel();
@@ -112,9 +108,7 @@ public abstract class Ataque {
         danoBase *= tipo.calculaBonus(atacado.getEspecie().getTipo1());
         danoBase *= tipo.calculaBonus(atacado.getEspecie().getTipo2());
     
-        danoBase *= new Double((217+(255-217))*r.nextDouble())/255;
-        
-        return danoBase;
+        return danoBase * util.Probabilidade.getRandom(217, 255)/255;
     }
     
     private boolean calculoCritico(double speed) {
