@@ -2,22 +2,22 @@ package pokemon;
 
 public enum Tipo {
     
-    NONE("NONE"),
-    BUG("BUG"),
-    DRAGON("DRAGON"),
-    ELETRIC("ELETRIC "),
-    FIGHTING("FIGHTING"),
-    FIRE("FIRE"),
-    FLYING("FLYING"),
-    ICE("ICE"),
-    GHOST("GHOST"),
-    GRASS("GRASS"),
-    GROUND("GROUND"),
-    NORMAL("NORMAL"),
-    POISON("POISON"),
-    PSYCHIC("PSYCHIC"),
-    ROCK("ROCK"),
-    WATER("WATER");
+    NONE("None"),
+    BUG("Bug"),
+    DRAGON("Dragon"),
+    ELETRIC("Eletric "),
+    FIGHTING("Fighting"),
+    FIRE("Fire"),
+    FLYING("Flying"),
+    ICE("Ice"),
+    GHOST("Ghost"),
+    GRASS("Grass"),
+    GROUND("Ground"),
+    NORMAL("Normal"),
+    POISON("Poison"),
+    PSYCHIC("Psychic"),
+    ROCK("Rock"),
+    WATER("Water");
     
     Tipo(String descricao){
         this.descricao = descricao;
