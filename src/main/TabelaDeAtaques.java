@@ -26,7 +26,6 @@ public class TabelaDeAtaques {
                 linha = conteudo.readLine();
                 String[] camposLidos = linha.split(separadorCampo);
                 for(String s: camposLidos){
-                    System.out.println("["+i+"]["+j+"] = "+s); //print de teste (pode ser pagado)
                     tabelaAtaques[i][j] = s;
                     j++;
                 }
