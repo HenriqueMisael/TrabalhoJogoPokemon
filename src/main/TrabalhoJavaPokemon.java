@@ -7,25 +7,23 @@ import batalha.Batalha;
 import batalha.Jogador;
 import batalha.JogadorHumano;
 import batalha.JogadorMaquina;
+import pokemon.Especie;
 import pokemon.Pokemon;
 
 public class TrabalhoJavaPokemon {
 
+    static TabelaDeEspecies tabelaEspecies = new TabelaDeEspecies("Tabela_Especies.txt");
+    static TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");      
+    
     public static void main(String[] args) {
     	
-    	TabelaDeEspecies tabelaEspecies = new TabelaDeEspecies("Tabela_Especies.txt");
-    	TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");    	
-    	System.out.println("Especie Pokemon: "+tabelaEspecies.getEspecie(150)); //Print teste
-    	System.out.println("Nome Ataque: "+tabelaAtaques.getNome(1)); //Print teste
-
         Queue<Integer> argumentos = new LinkedList<Integer>();
         Batalha batalha;
         Jogador p1, p2;
         
-        args[0] = "0";
-        args[1] = "0"; 
-        
+        System.out.print("Entrada: ");
         for( String a:args ) {
+            System.out.print(a);
             argumentos.add(Integer.parseInt(a));
         }
        
@@ -37,11 +35,7 @@ public class TrabalhoJavaPokemon {
         
         batalha = new Batalha( p1, p2 );
         batalha.start();
-    	
-    	
-    	
     }
-    
 
     private static Jogador retornaJogadorConformeTipo(int tipoJogador) {
         
@@ -56,9 +50,21 @@ public class TrabalhoJavaPokemon {
     }
 
     private static void montaTimePokemon(Jogador p, Queue<Integer> argumentos, int quantidadePokemons) {        
-        System.out.println("\nRestante: " + argumentos.toString());
+
+        Especie especie;
+        int especieId = argumentos.remove();
+        
+        especie = new Especie( especieId, tabelaEspecies.getEspecie(especieId),
+                                          tabelaEspecies.getTipo1(especieId),
+                                          tabelaEspecies.getTipo2(especieId),
+                                          tabelaEspecies.getBaseHP(especieId),
+                                          tabelaEspecies.getBaseATK(especieId), 
+                                          tabelaEspecies.getBaseDEF(especieId), 
+                                          tabelaEspecies.getBaseSPE(especieId),
+                                          tabelaEspecies.getBaseSPD(especieId));
+        
         for( int i = 0; i < quantidadePokemons; i++ ) {
-            p.adicionarPokemon(new Pokemon(argumentos.remove(),argumentos.remove(),argumentos.remove(),argumentos.remove(),argumentos.remove(),argumentos.remove()));
+            p.adicionarPokemon(new Pokemon(especie,argumentos.remove(),argumentos.remove(),argumentos.remove(),argumentos.remove(),argumentos.remove()));
         }
     }
 }
