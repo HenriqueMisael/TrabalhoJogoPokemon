@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import pokemon.Tipo;
+
 public class TabelaDeEspecies {
 	private String[][] tabelaPokemons = new String[151][9];
 	
@@ -29,7 +31,6 @@ public class TabelaDeEspecies {
                 linha = conteudo.readLine();
                 String[] camposLidos = linha.split(separadorCampo);
                 for(String s: camposLidos){
-                    System.out.println("["+i+"]["+j+"] = "+s); //print de teste (pode ser pagado)
                     tabelaPokemons[i][j] = s;
                     j++;
                 }
@@ -49,12 +50,12 @@ public class TabelaDeEspecies {
 		return tabelaPokemons[id-1][1];
 	}
 	
-	public String getTipo1(int id) {
-		return tabelaPokemons[id-1][2];
+	public Tipo getTipo1(int id) {
+		return Tipo.valueOf(tabelaPokemons[id-1][2]);
 	}
 	
-	public String getTipo2(int id) {
-		return tabelaPokemons[id-1][3];
+	public Tipo getTipo2(int id) {
+		return Tipo.valueOf(tabelaPokemons[id-1][3]);
 	}
 	
 	public int getBaseHP(int id) {
