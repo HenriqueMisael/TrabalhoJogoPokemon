@@ -34,7 +34,7 @@ public class TrabalhoJavaPokemon {
         montaTimePokemon(p2, argumentos, argumentos.remove());
         
         batalha = new Batalha( p1, p2 );
-        batalha.start();
+        //batalha.start();
     }
 
     private static Jogador retornaJogadorConformeTipo(int tipoJogador) {

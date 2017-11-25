@@ -1,5 +1,8 @@
 package batalha;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Batalha {
 
 	//ATRIBUTOS
@@ -17,7 +20,7 @@ public class Batalha {
     
     //METODOS
     public void start() {
-/*
+
         int vencedor = 0;
         Queue<Turno> turnos = new LinkedList<Turno>();
         
@@ -25,15 +28,13 @@ public class Batalha {
             
             turnos.add(new Turno(time1.escolherComando(), time2.escolherComando()));
             
-            
+            /*
                 Verifica vitória
-            
+            */
             if( !time1.temPokemonUtilizavel() )
                 vencedor = 1;
             else if( !time2.temPokemonUtilizavel() )
                 vencedor = 2;            
         }
-        
-*/    }
-
+    }
 }
