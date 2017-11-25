@@ -1,14 +1,34 @@
 package ataques;
 
+import pokemon.Pokemon;
+import util.Probabilidade;
+
 public class AtaqueMultiHit extends Ataque {
 
 	private int min;
 	private int max;
 	
 	@Override
-	public void efeito() {
-		// TODO Auto-generated method stub
-
+	public void efeito(Pokemon atacante, Pokemon atacado) {
+        
+	    double modificadorLevel;
+	    int numeroAtaques;
+        
+        super.reduzPP();
+        
+        if( calculoAcerto(atacante, atacado) ) {
+            modificadorLevel = atacante.getLevel();
+            
+            /*
+                Se o ataque for crítico, o modificador de nível é dobrado
+            */
+            if(calculoCritico(atacante.getSpeed()))
+                modificadorLevel *= 2;
+            
+            numeroAtaques = (int) Probabilidade.getRandom(min, max);
+            
+            while((numeroAtaques--) > 0)
+                atacado.reduzHp(calculoDano( atacante, atacado, modificadorLevel ));
+        }
 	}
-
 }

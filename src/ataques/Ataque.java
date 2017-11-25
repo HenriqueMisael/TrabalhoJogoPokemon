@@ -17,10 +17,21 @@ public class Ataque {
     private Tipo tipo;
     
     public void efeito(Pokemon atacante, Pokemon atacado) {
-    	currentPowerPoints--;
-
-    	if( calculoAcerto(atacante, atacado) ) {
-    		atacado.reduzHp(calculoDano( atacante, atacado ));
+    	
+        double modificadorLevel;
+        
+        reduzPP();
+        
+      	if( calculoAcerto(atacante, atacado) ) {
+      	    modificadorLevel = atacante.getLevel();
+      	    
+            /*
+                Se o ataque for crítico, o modificador de nível é dobrado
+            */
+            if(calculoCritico(atacante.getSpeed()))
+                modificadorLevel *= 2;
+            
+    		atacado.reduzHp(calculoDano( atacante, atacado, modificadorLevel ));
     	}    	
     }
     
@@ -36,7 +47,11 @@ public class Ataque {
         currentPowerPoints = maxPowerPoints;
     }
     
-    private boolean calculoAcerto(Pokemon atacante, Pokemon atacado) {
+    protected void reduzPP() {
+        currentPowerPoints--;
+    }
+    
+    protected boolean calculoAcerto(Pokemon atacante, Pokemon atacado) {
         
         double accuracy, evasion;
         
@@ -46,11 +61,9 @@ public class Ataque {
         return util.Probabilidade.calcula(this.accuracy*(accuracy/evasion));
     }
 
-    private double calculoDano(Pokemon atacante, Pokemon atacado) {
+    protected double calculoDano(Pokemon atacante, Pokemon atacado, double modificadorLevel) {
         
-        double modificadorLevel, danoBase, attack, defense;
-        
-        modificadorLevel = atacante.getLevel();
+        double danoBase, attack, defense;
         
         switch(tipo) {
             case NORMAL:
@@ -79,11 +92,6 @@ public class Ataque {
                 defense = 0;                
             break;                
         }
-        /*
-            Se o ataque for crítico, o modificador de nível é dobrado
-        */
-        if(calculoCritico(atacante.getSpeed()))
-            modificadorLevel *= 2;
         
         /*
             Se o usuário estiver afetado por BURNED, seu ataque é dividido pela metade
@@ -111,7 +119,7 @@ public class Ataque {
         return danoBase * util.Probabilidade.getRandom(217, 255)/255;
     }
     
-    private boolean calculoCritico(double speed) {
+    protected boolean calculoCritico(double speed) {
         
         Random r = new Random();
         double dice = 0 + ( 100-0 )*r.nextDouble();
