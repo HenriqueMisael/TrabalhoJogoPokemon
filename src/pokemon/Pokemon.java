@@ -183,10 +183,14 @@ public class Pokemon {
         return especie;
     }
 
-	public void reduzHp(double dano) {
-		hpAtual = Double.max(hpAtual-dano,0);
-		
-		if(hpAtual == 0)
-			status = Status.FAINTED;		
-	}
+    public void reduzHp(double dano) {
+        hpAtual = Double.max(hpAtual-dano,0);
+        
+        if(hpAtual == 0)
+            status = Status.FAINTED;        
+    }
+
+    public void curaHp(double cura) {
+        hpAtual = Double.min(hpAtual+cura,hpMax);
+    }
 }
