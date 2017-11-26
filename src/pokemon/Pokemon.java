@@ -187,7 +187,11 @@ public class Pokemon {
         hpAtual = Double.max(hpAtual-dano,0);
         
         if(hpAtual == 0)
-            status = Status.FAINTED;        
+            setStatus(Status.FAINTED);        
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;        
     }
 
     public void curaHp(double cura) {
