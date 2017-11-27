@@ -1,12 +1,22 @@
 package ataques;
 
+import pokemon.Tipo;
+
 public class AtaqueModifier extends Ataque {
 
 	private int modifierAfetado;
 	private int valor;
 	private int chance;
 	
-	@Override
+	public AtaqueModifier(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo,
+            int modifierAfetado, int valor, int chance) {
+        super(id, nome, maxPowerPoints, power, accuracy, tipo);
+        this.modifierAfetado = modifierAfetado;
+        this.valor = valor;
+        this.chance = chance;
+    }
+
+    @Override
 	public void efeito(pokemon.Pokemon atacante, pokemon.Pokemon atacado) {
 		super.efeito(atacante, atacado);
 		if(util.Probabilidade.calcula(chance))

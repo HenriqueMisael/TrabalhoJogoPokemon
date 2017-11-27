@@ -2,6 +2,7 @@ package ataques;
 
 import pokemon.Pokemon;
 import pokemon.Status;
+import pokemon.Tipo;
 import util.Probabilidade;
 
 public class AtaqueStatus extends Ataque {
@@ -18,7 +19,14 @@ public class AtaqueStatus extends Ataque {
     private int status;
 	private int chance;	
 	
-	@Override
+	public AtaqueStatus(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo,
+            int status, int chance) {
+        super(id, nome, maxPowerPoints, power, accuracy, tipo);
+        this.status = status;
+        this.chance = chance;
+    }
+
+    @Override
 	public void efeito( Pokemon atacante, Pokemon atacado ) {
 	    super.efeito(atacante, atacado);
 	    

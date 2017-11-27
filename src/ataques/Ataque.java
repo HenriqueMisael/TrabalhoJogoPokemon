@@ -16,6 +16,18 @@ public class Ataque {
     private double accuracy;
     private Tipo tipo;
     
+    public Ataque(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo) {
+        super();
+        this.id = id;
+        this.nome = nome;
+        this.maxPowerPoints = maxPowerPoints;
+        this.power = power;
+        this.accuracy = accuracy;
+        this.tipo = tipo;
+        
+        restauraAtaques();
+    }
+
     public void efeito(Pokemon atacante, Pokemon atacado) {
     	
         double modificadorLevel;
@@ -79,7 +91,7 @@ public class Ataque {
                 break;
             case FIRE:
             case WATER:
-            case ELETRIC:
+            case ELECTRIC:
             case GRASS:
             case ICE:
             case PSYCHIC:
@@ -144,5 +156,11 @@ public class Ataque {
             case  6: return 3.00;        
         }
         return 0;
-    }    
+    }
+
+    @Override
+    public String toString() {
+        return "[" + id + "] " + nome;
+    }
+    
 }

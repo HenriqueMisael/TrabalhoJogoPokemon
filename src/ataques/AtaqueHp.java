@@ -1,6 +1,7 @@
 package ataques;
 
 import pokemon.Pokemon;
+import pokemon.Tipo;
 
 public class AtaqueHp extends Ataque {
 
@@ -10,7 +11,15 @@ public class AtaqueHp extends Ataque {
 	private int valor;
 	private double porcentagem;
 	
-	@Override
+	public AtaqueHp(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo, int valor,
+            double porcentagem) {
+        super(id, nome, maxPowerPoints, power, accuracy, tipo);
+        this.valor = valor;
+        this.porcentagem = porcentagem;
+    }
+
+
+    @Override
 	public void efeito(Pokemon atacante, Pokemon atacado) {
         double modificadorLevel, dano, cura;
         

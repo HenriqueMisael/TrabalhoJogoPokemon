@@ -1,6 +1,7 @@
 package ataques;
 
 import pokemon.Pokemon;
+import pokemon.Tipo;
 import util.Probabilidade;
 
 public class AtaqueMultiHit extends Ataque {
@@ -8,7 +9,14 @@ public class AtaqueMultiHit extends Ataque {
 	private int min;
 	private int max;
 	
-	@Override
+	public AtaqueMultiHit(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo, int min,
+            int max) {
+        super(id, nome, maxPowerPoints, power, accuracy, tipo);
+        this.min = min;
+        this.max = max;
+    }
+
+    @Override
 	public void efeito(Pokemon atacante, Pokemon atacado) {
         
 	    double modificadorLevel;
