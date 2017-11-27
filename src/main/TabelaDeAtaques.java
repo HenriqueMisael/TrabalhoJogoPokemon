@@ -3,6 +3,9 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
+
+import pokemon.Tipo;
 
 public class TabelaDeAtaques {
 	private String[][] tabelaAtaques = new String[165][8];
@@ -44,8 +47,8 @@ public class TabelaDeAtaques {
 		return tabelaAtaques[id-1][1];
 	}
 	
-	public String getType(int id) {
-		return tabelaAtaques[id-1][2];
+	public Tipo getType(int id) {
+		return pokemon.Tipo.valueOf(tabelaAtaques[id-1][2].toUpperCase());
 	}
 	
 	public int getPP(int id) {
@@ -64,7 +67,16 @@ public class TabelaDeAtaques {
 		return tabelaAtaques[id-1][6];
 	}
 	
-	public String getParametros(int id) {
-		return tabelaAtaques[id-1][7];
+	public String[] getParametros(int id) {
+		
+	    StringTokenizer st = new StringTokenizer(tabelaAtaques[id-1][7], ", ");
+	    String[] parametros = new String[st.countTokens()];
+	    int i = 0;
+	    
+	    while(st.hasMoreTokens()) {
+	        parametros[i++] = st.nextToken();
+	    }
+	    
+	    return parametros;
 	}
 }

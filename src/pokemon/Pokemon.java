@@ -1,6 +1,8 @@
 
 package pokemon;
 
+import ataques.Ataque;
+
 public class Pokemon {
 
     //ATRIBUTOS
@@ -22,9 +24,9 @@ public class Pokemon {
     private boolean flinch;
     
     private Status status;    
-    private int ataque1, ataque2, ataque3, ataque4;
+    private Ataque ataque1, ataque2, ataque3, ataque4;
 
-    public Pokemon(Especie especie, int level, int ataque1, int ataque2, int ataque3, int ataque4) {
+    public Pokemon(Especie especie, int level, Ataque ataque1, Ataque ataque2, Ataque ataque3, Ataque ataque4) {
         this.especie = especie;
         this.level = level;
         this.ataque1 = ataque1;
@@ -102,19 +104,19 @@ public class Pokemon {
         return speed;
     }
 
-    public int getAtaque1() {
+    public Ataque getAtaque1() {
         return ataque1;
     }
 
-    public int getAtaque2() {
+    public Ataque getAtaque2() {
         return ataque2;
     }
 
-    public int getAtaque3() {
+    public Ataque getAtaque3() {
         return ataque3;
     }
 
-    public int getAtaque4() {
+    public Ataque getAtaque4() {
         return ataque4;
     }
     
@@ -172,7 +174,7 @@ public class Pokemon {
         String retorno = "";
         
         retorno += String.format("\nEspécie %s, nível %d.", especie.toString(), level);
-        retorno += String.format("\nAtaques:\n1-%d\n2-%d\n3-%d\n4-%d",ataque1, ataque2, ataque3, ataque4);
+        retorno += String.format("\nAtaques:\n1-%s\n2-%s\n3-%s\n4-%s",ataque1, ataque2, ataque3, ataque4);
         retorno += String.format("\nHP: %.2f/%.2f",hpAtual, hpMax);
         retorno += String.format("\nAtributos:\natk: %.2f\ndef: %.2f\nspe: %.2f\nspd: %.2f",attack, defense, special, speed);
         
