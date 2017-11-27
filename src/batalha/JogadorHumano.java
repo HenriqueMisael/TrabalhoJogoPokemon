@@ -15,6 +15,6 @@ public class JogadorHumano extends Jogador{
     
     @Override
     public String toString() {
-        return "humano\n" + super.toString();
+        return "humano:" + super.toString();
     }
 }

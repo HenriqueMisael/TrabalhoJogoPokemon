@@ -44,7 +44,7 @@ public abstract class Jogador {
         String retorno = "";
         
         for(Pokemon p:listaPokemons) {
-            retorno += p.toString();
+            retorno += "\n"+p.toString();
         }
         return retorno;
     }

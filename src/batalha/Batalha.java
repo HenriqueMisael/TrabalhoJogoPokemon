@@ -15,6 +15,7 @@ public class Batalha {
         
         System.out.println("");
         System.out.println(time1.toString());
+        System.out.println("------------------------------");
         System.out.println(time2.toString());
     }
     

@@ -5,7 +5,7 @@ public enum Tipo {
     NONE("None"),
     BUG("Bug"),
     DRAGON("Dragon"),
-    ELETRIC("Eletric "),
+    ELECTRIC("Eletric "),
     FIGHTING("Fighting"),
     FIRE("Fire"),
     FLYING("Flying"),

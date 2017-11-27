@@ -15,6 +15,6 @@ public class JogadorMaquina extends Jogador{
     
     @Override
     public String toString() {
-        return "maquina\n" + super.toString();
+        return "maquina:" + super.toString();
     }
 }
