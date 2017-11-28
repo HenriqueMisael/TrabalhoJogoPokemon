@@ -23,11 +23,11 @@ public class Batalha {
     public void start() {
 
         int vencedor = 0;
-        Queue<Turno> turnos = new LinkedList<Turno>();
+        Turno turno;
         
         while( vencedor == 0 ) {
             
-            turnos.add(new Turno(time1.escolherComando(), time2.escolherComando()));
+            turno = new Turno(time1.escolherComando(time2.getProximoPokemon()), time2.escolherComando(time1.getProximoPokemon()));
             
             /*
                 Verifica vitória

@@ -1,16 +1,18 @@
 
 package batalha;
 
+import pokemon.Pokemon;
 
 public class JogadorMaquina extends Jogador{
     
     public JogadorMaquina() {
-        
+        super.identificador = "Máquina";
     }    
     
     @Override
-    public AcaoJogador escolherComando(){
-    		return null;
+    public AcaoJogador escolherComando(Pokemon adversario){
+        
+        return new AcaoUsarAtaque(this.getProximoPokemon(),adversario);
     }
     
     @Override

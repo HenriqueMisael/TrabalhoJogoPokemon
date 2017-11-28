@@ -27,6 +27,6 @@ public class TrabalhoJavaPokemon {
         ArquitetoSimulacao.montaTimePokemon(p2, argumentos, argumentos.remove());
         
         batalha = new Batalha( p1, p2 );
-        //batalha.start();
+        batalha.start();
     }
 }

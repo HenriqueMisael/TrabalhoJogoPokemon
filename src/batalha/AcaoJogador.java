@@ -7,5 +7,6 @@ public interface AcaoJogador {
             ação a diferenciará das demais.
     */    
     public void executa();
+    public String message();
     public boolean equals( Object obj );
 }

@@ -4,20 +4,32 @@ import java.util.LinkedList;
 
 public class Turno {
 
-    AcaoJogador jogador1, jogador2;
+    AcaoJogador acaoJogador1, acaoJogador2;
     
     public Turno( AcaoJogador acaoJogador1, AcaoJogador acaoJogador2 ) {
-        jogador1 = acaoJogador1;
-        jogador2 = acaoJogador2;
+        this.acaoJogador1 = acaoJogador1;
+        this.acaoJogador2 = acaoJogador2;
     }
 
     public void executaAcoes() {
-        calculaOrdem();
+        
+        LinkedList<AcaoJogador> ordem = calculaOrdem();
+        
+        executaAcao(ordem.remove());
+        executaAcao(ordem.remove());
+    }
+    
+    private void executaAcao(AcaoJogador acao) {
+        acao.executa();
+        System.out.println(acao.message());
     }
     
     private LinkedList<AcaoJogador> calculaOrdem(){
         
         LinkedList<AcaoJogador> ordem = new LinkedList<AcaoJogador>();
+        
+        ordem.add(acaoJogador1);
+        ordem.add(acaoJogador2);
         
         return ordem;
     }
