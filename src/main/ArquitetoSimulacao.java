@@ -20,7 +20,7 @@ public class ArquitetoSimulacao {
         
         switch( tipoJogador ) {
             case 0: p = new JogadorMaquina();break;
-            case 1: p = new JogadorHumano();break;
+            case 1: p = new JogadorHumano("Henrique");break;
         }
 
         return p;

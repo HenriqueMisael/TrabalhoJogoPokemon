@@ -5,6 +5,7 @@ import java.util.Queue;
 
 import batalha.Batalha;
 import batalha.Jogador;
+import util.Probabilidade;
 
 public class TrabalhoJavaPokemon {
 

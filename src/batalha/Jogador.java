@@ -2,6 +2,9 @@
 package batalha;
 
 import java.util.List;
+
+import ataques.Ataque;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import pokemon.Pokemon;
@@ -45,6 +48,10 @@ public abstract class Jogador {
 
     }
         
+    protected Ataque retornaAtaquePokemon(int ataque) {
+        return getProximoPokemon().getAtaque1();
+    }
+    
     public abstract AcaoJogador escolherComando(Pokemon adversario);
     
     @Override

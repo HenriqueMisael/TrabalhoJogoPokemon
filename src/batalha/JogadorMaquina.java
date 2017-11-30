@@ -12,7 +12,7 @@ public class JogadorMaquina extends Jogador{
     @Override
     public AcaoJogador escolherComando(Pokemon adversario){
         
-        return new AcaoUsarAtaque(this.getProximoPokemon(),adversario);
+        return new AcaoUsarAtaque(getProximoPokemon(),adversario,getProximoPokemon().getAtaque1());
     }
     
     @Override

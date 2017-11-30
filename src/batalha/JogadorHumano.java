@@ -1,7 +1,9 @@
 
 package batalha;
 
+import ataques.Ataque;
 import pokemon.Pokemon;
+import pokemon.Status;
 
 public class JogadorHumano extends Jogador{
     
@@ -15,7 +17,7 @@ public class JogadorHumano extends Jogador{
         AcaoJogador acao;
         
         switch(pedeAcaoJogador(adversario)) {
-            case 1: acao = new AcaoUsarAtaque(this.getProximoPokemon(),adversario);break;
+            case 1: acao = new AcaoUsarAtaque(this.getProximoPokemon(),adversario,escolheAtaqueUsar());break;
             case 2: acao = new AcaoTrocarPokemon(this,escolheNovoPokemon());break;
             default: acao = null;
         }
@@ -23,13 +25,29 @@ public class JogadorHumano extends Jogador{
         return acao;
     }
     
+    private Ataque escolheAtaqueUsar() {
+        System.out.printf("Escolha o ataque para selecionar:");
+        System.out.printf("\n1-%s", getProximoPokemon().getAtaque1().toString());
+        System.out.printf("\n2-%s", getProximoPokemon().getAtaque2().toString());
+        System.out.printf("\n3-%s", getProximoPokemon().getAtaque3().toString());
+        System.out.printf("\n4-%s", getProximoPokemon().getAtaque4().toString());
+        
+        /*
+            Implementar seleção de ataques
+        */        
+        
+        return getProximoPokemon().getAtaque1();
+    }
+
     private Pokemon escolheNovoPokemon() {
         
         int i, escolhido;
         
         System.out.printf("Escolha o pokémon para selecionar:");
-        for(i = 1; i < getListaPokemons().size(); i++)
-            System.out.printf("\n%i - %s", i, getListaPokemons().get(i).toString());
+        for(i = 1; i < getListaPokemons().size(); i++) {
+            if( getListaPokemons().get(i).getStatus() != Status.FAINTED )
+                System.out.printf("\n%i - %s", i, getListaPokemons().get(i).toString());
+        }
         /*
             Implementar leitura da entrada do usuário
         */
