@@ -5,6 +5,7 @@ import java.util.Random;
 import pokemon.Pokemon;
 import pokemon.Status;
 import pokemon.Tipo;
+import util.Probabilidade;
 
 public class Ataque {
 
@@ -32,19 +33,21 @@ public class Ataque {
     	
         double modificadorLevel;
         
-        reduzPP();
-        
-      	if( calculoAcerto(atacante, atacado) ) {
-      	    modificadorLevel = atacante.getLevel();
-      	    
-            /*
-                Se o ataque for crítico, o modificador de nível é dobrado
-            */
-            if(calculoCritico(atacante.getSpeed()))
-                modificadorLevel *= 2;
+        if( currentPowerPoints > 0 ) {
+            reduzPP();
             
-    		atacado.reduzHp(calculoDano( atacante, atacado, modificadorLevel ));
-    	}    	
+          	if( calculoAcerto(atacante, atacado) ) {
+          	    modificadorLevel = atacante.getLevel();
+          	    
+                /*
+                    Se o ataque for crítico, o modificador de nível é dobrado
+                */
+                if(calculoCritico(atacante.getSpeed()))
+                    modificadorLevel *= 2;
+                
+        		atacado.reduzHp(calculoDano( atacante, atacado, modificadorLevel ));
+        	}
+        }
     }
     
     public int getId() {
@@ -132,11 +135,7 @@ public class Ataque {
     }
     
     protected boolean calculoCritico(double speed) {
-        
-        Random r = new Random();
-        double dice = 0 + ( 100-0 )*r.nextDouble();
-        
-        return speed/512 >= dice;
+        return Probabilidade.calcula(speed/512);
     }
     
     private double retornaValorConformeModificador(int modifier) {
