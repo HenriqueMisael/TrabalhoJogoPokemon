@@ -1,7 +1,5 @@
 package ataques;
 
-import java.util.Random;
-
 import pokemon.Pokemon;
 import pokemon.Status;
 import pokemon.Tipo;

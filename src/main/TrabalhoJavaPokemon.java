@@ -5,7 +5,6 @@ import java.util.Queue;
 
 import batalha.Batalha;
 import batalha.Jogador;
-import util.Probabilidade;
 
 public class TrabalhoJavaPokemon {
 
@@ -15,9 +14,7 @@ public class TrabalhoJavaPokemon {
         Batalha batalha;
         Jogador p1, p2;
         
-        System.out.print("Entrada: ");
         for( String a:args ) {
-            System.out.print(a);
             argumentos.add(Integer.parseInt(a));
         }
        
