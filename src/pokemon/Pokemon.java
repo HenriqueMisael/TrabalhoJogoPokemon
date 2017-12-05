@@ -170,15 +170,7 @@ public class Pokemon {
     
     @Override
     public String toString() {
-        
-        String retorno = "";
-        
-        retorno += String.format("%s, nível %d.", especie.toString(), level);
-        retorno += String.format("\nAtaques:\n\t1-%s\n\t2-%s\n\t3-%s\n\t4-%s",ataque1, ataque2, ataque3, ataque4);
-        retorno += String.format("\nHP: %.2f/%.2f",hpAtual, hpMax);
-        retorno += String.format("\nAtributos:\n\tatk: %.2f\n\tdef: %.2f\n\tspe: %.2f\n\tspd: %.2f",attack, defense, special, speed);
-        
-        return retorno;
+        return getEspecie().toString();
     }
 
     public Especie getEspecie() {
