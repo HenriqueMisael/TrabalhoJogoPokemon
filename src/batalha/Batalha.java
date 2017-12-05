@@ -1,5 +1,8 @@
 package batalha;
 
+import java.util.List;
+
+import pokemon.Pokemon;
 import pokemon.Status;
 
 public class Batalha {
@@ -26,7 +29,7 @@ public class Batalha {
         
         while( vencedor == 0 ) {
             
-            System.out.println(""/*String.format("Início do turno %d.",numeroTurno++)*/);
+            System.out.println(String.format("Início do turno %d.",numeroTurno++));
             turno = new Turno(time1.escolherComando(time2.getProximoPokemon()), time2.escolherComando(time1.getProximoPokemon()));
             delay();
             turno.executaAcoes();
@@ -44,8 +47,10 @@ public class Batalha {
             if( !time1.temPokemonUtilizavel() )
                 vencedor = 1;
             else if( !time2.temPokemonUtilizavel() )
-                vencedor = 2;            
+                vencedor = 2;
         }
+        
+        System.out.println(String.format("Vencedor: jogador %d", vencedor));
     }
 
     private void delay() {
@@ -60,12 +65,15 @@ public class Batalha {
     private void trocaPokemonSeFainted(Jogador time) {
         
         if(time.getProximoPokemon().getStatus() == Status.FAINTED) {
-            int i = 0;
-            while(time.getListaPokemons().get(++i).getStatus() == Status.FAINTED && i < time.getListaPokemons().size());
+            int i;
+            List<Pokemon> lista = time.getListaPokemons();
             
-            System.out.println(String.format("Pokémon %s exaurido. Foi automaticamente trocado pelo pokémon %s.", time.getProximoPokemon().getEspecie().toString(), time.getListaPokemons().get(i).getEspecie().toString()));
+            for(i = 0; i < lista.size(); i++)
+                if(lista.get(i).getStatus() != Status.FAINTED)
+                    break;
             
-            time.trocarPokemon(time.getListaPokemons().get(i));
+            if(i < lista.size())
+                time.trocarPokemon(lista.get(i));
         }
     }   
 }
