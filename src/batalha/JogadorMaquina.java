@@ -34,6 +34,6 @@ public class JogadorMaquina extends Jogador{
 
 	@Override
     public String toString() {
-        return "maquina:" + super.toString();
+        return "Jogador Maquina:" + super.toString();
     }
 }

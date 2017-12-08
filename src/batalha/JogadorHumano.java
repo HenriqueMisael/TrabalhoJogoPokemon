@@ -26,7 +26,7 @@ public class JogadorHumano extends Jogador{
     }
     
     private Ataque escolheAtaqueUsar() {
-        System.out.printf("Escolha o ataque para selecionar:");
+        System.out.printf("\nEscolha o ataque para selecionar:");
         System.out.printf("\n1-%s", getProximoPokemon().getAtaque1().toString());
         if(getProximoPokemon().getAtaque2() != null) {
         	System.out.printf("\n2-%s", getProximoPokemon().getAtaque2().toString());
@@ -36,6 +36,7 @@ public class JogadorHumano extends Jogador{
         	    	System.out.printf("\n4-%s", getProximoPokemon().getAtaque4().toString());
         	}
         }
+        System.out.printf("\n");
         
         /*
             Implementar seleção de ataques
@@ -72,6 +73,6 @@ public class JogadorHumano extends Jogador{
 
     @Override
     public String toString() {
-        return "humano:" + super.toString();
+        return "Jogador Humano:" + super.toString();
     }
 }
