@@ -55,7 +55,13 @@ public class TabelaDeEspecies {
 	}
 	
 	public Tipo getTipo2(int id) {
-		return Tipo.valueOf(tabelaPokemons[id-1][3].toUpperCase());
+		
+		String tipoString = tabelaPokemons[id-1][3].toUpperCase();
+		
+		if(tipoString.isEmpty())
+			tipoString = "NONE";
+		
+		return Tipo.valueOf(tipoString);
 	}
 	
 	public int getBaseHP(int id) {

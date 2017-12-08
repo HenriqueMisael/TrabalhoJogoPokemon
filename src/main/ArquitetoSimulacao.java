@@ -53,8 +53,14 @@ public class ArquitetoSimulacao {
     private static Ataque arquitetaAtaque(int id) {
         
         Ataque ataque;
-        String[] modificadores = tabelaAtaques.getParametros(id);
-        String tipo = tabelaAtaques.getClasse(id);
+        String[] modificadores;
+        String tipo;
+        
+        if(id == 0)
+        	return null;
+        
+        modificadores = tabelaAtaques.getParametros(id);
+        tipo = tabelaAtaques.getClasse(id);
         
         if(tipo == "charge") {
             ataque = new AtaqueCharge(id, tabelaAtaques.getNome(id),

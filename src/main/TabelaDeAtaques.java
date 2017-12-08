@@ -69,9 +69,15 @@ public class TabelaDeAtaques {
 	
 	public String[] getParametros(int id) {
 		
-	    StringTokenizer st = new StringTokenizer(tabelaAtaques[id-1][7], ", ");
-	    String[] parametros = new String[st.countTokens()];
+	    StringTokenizer st;
+	    String[] parametros;
 	    int i = 0;
+	    
+	    if(tabelaAtaques[id-1][7] == null)
+	    	return null;
+	    
+	    st = new StringTokenizer(tabelaAtaques[id-1][7], ", ");
+	    parametros = new String[st.countTokens()];
 	    
 	    while(st.hasMoreTokens()) {
 	        parametros[i++] = st.nextToken();
