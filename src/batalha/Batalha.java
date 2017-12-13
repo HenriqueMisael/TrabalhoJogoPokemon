@@ -45,9 +45,9 @@ public class Batalha {
                 Verifica vitória
             */
             if( !time1.temPokemonUtilizavel() )
-                vencedor = 1;
-            else if( !time2.temPokemonUtilizavel() )
                 vencedor = 2;
+            else if( !time2.temPokemonUtilizavel() )
+                vencedor = 1;
         }
         
         System.out.println(String.format("Vencedor: jogador %d", vencedor));

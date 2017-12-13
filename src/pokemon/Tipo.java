@@ -2,7 +2,7 @@ package pokemon;
 
 public enum Tipo {
     
-    NONE(     "None"    , 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0),
+    NONE(     "None"    , 1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1),
     BUG(      "Bug"     , 1, 0.5, 0.5,   2,   1,   1,   1, 0.5, 0.5,   1,   2,   1,   2,   1,   1),
     DRAGON(   "Dragon"  , 1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2),
     ELECTRIC( "Eletric" , 1,   1,   2,   1,   0,   1,   1,   1,   1,   2, 0.5, 0.5,   1,   1, 0.5),
@@ -63,7 +63,7 @@ public enum Tipo {
             case PSYCHIC : return bonusPsychic;
             case ICE     : return bonusIce;
             case DRAGON  : return bonusDragon;
-            case NONE    : return 0;
+            case NONE    : return 1;
         }
         
         return 1;
