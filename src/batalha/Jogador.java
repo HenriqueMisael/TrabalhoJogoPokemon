@@ -49,7 +49,18 @@ public abstract class Jogador {
     }
         
     protected Ataque retornaAtaquePokemon(int ataque) {
-        return getProximoPokemon().getAtaque1();
+        
+    	Ataque ataqueRetorno;
+    	
+    	switch(ataque) {
+    	case 1: ataqueRetorno = getProximoPokemon().getAtaque1();break;
+    	case 2: ataqueRetorno = getProximoPokemon().getAtaque1();break;
+    	case 3: ataqueRetorno = getProximoPokemon().getAtaque1();break;
+    	case 4: ataqueRetorno = getProximoPokemon().getAtaque1();break;
+    	default: ataqueRetorno = null;
+    	}
+    	
+    	return ataqueRetorno;
     }
     
     public abstract AcaoJogador escolherComando(Pokemon adversario);

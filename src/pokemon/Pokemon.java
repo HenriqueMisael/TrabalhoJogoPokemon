@@ -180,8 +180,12 @@ public class Pokemon {
     public void reduzHp(double dano) {
         hpAtual = Double.max(hpAtual-dano,0);
         
-        if(hpAtual == 0)
-            setStatus(Status.FAINTED);        
+        if(hpAtual == 0) {
+            setStatus(Status.FAINTED);
+            System.out.println(String.format("%s sofreu %.2f de dano e morreu.", this, dano));
+        }else {
+        	System.out.println(String.format("%s sofreu %.2f de dano.", this, dano));
+        }
     }
 
     public void setStatus(Status status) {
