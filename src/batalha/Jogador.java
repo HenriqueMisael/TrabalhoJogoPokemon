@@ -14,14 +14,18 @@ public abstract class Jogador {
     //ATRIBUTOS
     protected String identificador;
     private List<Pokemon> listaPokemons = new ArrayList<>();
+    private int id;
     
-    //CONSTRUTOR
-    public void adicionarPokemon(Pokemon pokemon){
-        listaPokemons.add(pokemon);
+    public Jogador(int id) {
+        this.id = id;
     }
     
-    public String getIdentificador() {
-        return identificador;
+    protected int getId() {
+        return id;
+    }
+    
+    public void adicionarPokemon(Pokemon pokemon){
+        listaPokemons.add(pokemon);
     }
     
     protected List<Pokemon> getListaPokemons(){

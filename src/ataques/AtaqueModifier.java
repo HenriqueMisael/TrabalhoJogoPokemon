@@ -17,8 +17,8 @@ public class AtaqueModifier extends Ataque {
     }
 
     @Override
-	public void efeito(pokemon.Pokemon atacante, pokemon.Pokemon atacado) {
-		super.efeito(atacante, atacado);
+	public void efeito(pokemon.Pokemon atacante, pokemon.Pokemon atacado, int player) {
+		super.efeito(atacante, atacado, player);
 		if(util.Probabilidade.calcula(chance))
 			switch(modifierAfetado) {
 				case 1: atacado.modifyModifierAccuracy(valor);break;

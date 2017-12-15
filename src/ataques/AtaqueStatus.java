@@ -27,8 +27,8 @@ public class AtaqueStatus extends Ataque {
     }
 
     @Override
-	public void efeito( Pokemon atacante, Pokemon atacado ) {
-	    super.efeito(atacante, atacado);
+	public void efeito( Pokemon atacante, Pokemon atacado, int player ) {
+	    super.efeito(atacante, atacado, player);
 	    
 	    if(Probabilidade.calcula(new Double(chance)))
 	        aplicaStatus(atacado);

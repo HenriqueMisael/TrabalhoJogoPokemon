@@ -7,8 +7,8 @@ import pokemon.Status;
 
 public class JogadorHumano extends Jogador{
     
-    public JogadorHumano(String nome) {
-        super.identificador = nome;
+    public JogadorHumano(int id) {
+        super(id);
     }
     
     @Override
@@ -17,8 +17,8 @@ public class JogadorHumano extends Jogador{
         AcaoJogador acao;
         
         switch(pedeAcaoJogador(adversario)) {
-            case 1: acao = new AcaoUsarAtaque(this.getProximoPokemon(),adversario,escolheAtaqueUsar());break;
-            case 2: acao = new AcaoTrocarPokemon(this,escolheNovoPokemon());break;
+            case 1: acao = new AcaoUsarAtaque(this.getProximoPokemon(),adversario,escolheAtaqueUsar(), getId());break;
+            case 2: acao = new AcaoTrocarPokemon(this,escolheNovoPokemon(), getId());break;
             default: acao = null;
         }
         

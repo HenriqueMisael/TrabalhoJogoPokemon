@@ -1,5 +1,6 @@
 package ataques;
 
+import batalha.AcaoJogador;
 import pokemon.Pokemon;
 import pokemon.Status;
 import pokemon.Tipo;
@@ -14,6 +15,7 @@ public class Ataque {
     private double power;
     private double accuracy;
     private Tipo tipo;
+    protected AcaoJogador retorno;
     
     public Ataque(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo) {
         super();
@@ -23,11 +25,12 @@ public class Ataque {
         this.power = power;
         this.accuracy = accuracy;
         this.tipo = tipo;
+        this.retorno = null;
         
         restauraAtaques();
     }
 
-    public void efeito(Pokemon atacante, Pokemon atacado) {
+    public void efeito(Pokemon atacante, Pokemon atacado, int player) {
     	
         double modificadorLevel;
         
@@ -56,6 +59,18 @@ public class Ataque {
         return nome;
     }
     
+    protected double getPower() {
+        return power;
+    }
+
+    protected double getAccuracy() {
+        return accuracy;
+    }
+
+    protected Tipo getTipo() {
+        return tipo;
+    }
+
     public void restauraAtaques() {
         currentPowerPoints = maxPowerPoints;
     }
@@ -158,6 +173,10 @@ public class Ataque {
     @Override
     public String toString() {
         return "[" + id + "] " + nome;
+    }
+
+    public AcaoJogador getRetorno() {
+        return retorno;
     }
     
 }

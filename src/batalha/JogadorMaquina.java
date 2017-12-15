@@ -7,14 +7,14 @@ import util.Probabilidade;
 
 public class JogadorMaquina extends Jogador{
     
-    public JogadorMaquina() {
-        super.identificador = "Máquina";
-    }    
+    public JogadorMaquina(int id) {
+        super(id);
+    }
     
     @Override
     public AcaoJogador escolherComando(Pokemon adversario){
         
-        return new AcaoUsarAtaque(getProximoPokemon(),adversario,retornaAtaquePokemon());
+        return new AcaoUsarAtaque(getProximoPokemon(),adversario,retornaAtaquePokemon(),getId());
     }
     
     private Ataque retornaAtaquePokemon() {

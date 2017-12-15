@@ -14,25 +14,23 @@ public class Batalha {
     public Batalha(Jogador p1, Jogador p2) {
         time1 = p1;
         time2 = p2;      
-        
-        System.out.println("(Time 1)");
-        System.out.println(time1.toString());
-        System.out.println("-------------------------------------------------");
-        System.out.println("(Time 2)");
-        System.out.println(time2.toString());
     }
     
     //METODOS
     public void start() {
 
         int vencedor = 0, numeroTurno = 1;
-        Turno turno;
+        Turno turno = new Turno(null,null);
         
         while( vencedor == 0 ) {
             
             System.out.println("-------------------------------------------------");
             System.out.println(String.format("Início do turno %d.",numeroTurno++));
-            turno = new Turno(time1.escolherComando(time2.getProximoPokemon()), time2.escolherComando(time1.getProximoPokemon()));
+            switch(turno.carregado()) {
+                case 0: turno = new Turno(time1.escolherComando(time2.getProximoPokemon()), time2.escolherComando(time1.getProximoPokemon()));break;
+                case 1: turno = new Turno(time2.escolherComando(time1.getProximoPokemon()));break;
+                case 2: turno = new Turno(time1.escolherComando(time2.getProximoPokemon()));break;
+            }
             delay();
             turno.executaAcoes();
             delay();

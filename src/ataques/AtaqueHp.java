@@ -20,7 +20,7 @@ public class AtaqueHp extends Ataque {
 
 
     @Override
-	public void efeito(Pokemon atacante, Pokemon atacado) {
+	public void efeito(Pokemon atacante, Pokemon atacado, int player) {
         double modificadorLevel, dano, cura;
         
         super.reduzPP();

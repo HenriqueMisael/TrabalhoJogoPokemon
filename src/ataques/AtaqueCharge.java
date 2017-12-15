@@ -9,7 +9,9 @@ public class AtaqueCharge extends Ataque {
     }
     
     @Override
-	public void efeito(pokemon.Pokemon atacante, pokemon.Pokemon atacado) {
-		super.efeito(atacante, atacado);
+	public void efeito(pokemon.Pokemon atacante, pokemon.Pokemon atacado, int player) {
+		Ataque ataque = new Ataque(getId(), getNome(), 1, getPower(), getAccuracy(), getTipo());
+        
+        this.retorno = new batalha.AcaoUsarAtaque(atacante, atacado, ataque, player);
 	}
 }

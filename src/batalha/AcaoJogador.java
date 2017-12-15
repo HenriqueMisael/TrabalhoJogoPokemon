@@ -6,7 +6,8 @@ public interface AcaoJogador {
             das ações quando assim for possível. Por definição, apenas a execução de uma
             ação a diferenciará das demais.
     */    
-    public void executa();
+    public AcaoJogador executa();
     public String message();
     public boolean equals( Object obj );
+    public int getPlayer();
 }

@@ -7,11 +7,13 @@ public class AcaoUsarAtaque implements AcaoJogador {
 
     private Pokemon atacante, alvo;
     private Ataque ataque;
+    private int player;
     
-    public AcaoUsarAtaque(Pokemon atacante, Pokemon alvo, Ataque ataque) {
+    public AcaoUsarAtaque(Pokemon atacante, Pokemon alvo, Ataque ataque, int player) {
         this.atacante = atacante;
         this.alvo = alvo;
         this.ataque = ataque;
+        this.player = player;
     }
 
     @Override
@@ -20,8 +22,13 @@ public class AcaoUsarAtaque implements AcaoJogador {
     }
     
     @Override
-    public void executa() {
-        ataque.efeito(atacante, alvo);
+    public AcaoJogador executa() {
+        ataque.efeito(atacante, alvo, getPlayer());
+        return ataque.getRetorno();
     }
 
+    @Override
+    public int getPlayer() {
+        return player;
+    }
 }
