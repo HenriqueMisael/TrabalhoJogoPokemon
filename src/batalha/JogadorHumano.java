@@ -5,7 +5,12 @@ import ataques.Ataque;
 import pokemon.Pokemon;
 import pokemon.Status;
 
+import java.util.Scanner;
+
 public class JogadorHumano extends Jogador{
+    
+    private int opcao = 0;
+    private Scanner entrada = new Scanner(System.in);
     
     public JogadorHumano(int id) {
         super(id);
@@ -18,7 +23,7 @@ public class JogadorHumano extends Jogador{
         
         switch(pedeAcaoJogador(adversario)) {
             case 1: acao = new AcaoUsarAtaque(this.getProximoPokemon(),adversario,escolheAtaqueUsar(), getId());break;
-            case 2: acao = new AcaoTrocarPokemon(this,escolheNovoPokemon(), getId());break;
+            case 2: acao = new AcaoTrocarPokemon(this ,escolheNovoPokemon(), getId());break;
             default: acao = null;
         }
         
@@ -37,12 +42,14 @@ public class JogadorHumano extends Jogador{
         	}
         }
         System.out.printf("\n");
-        
-        /*
-            Implementar seleção de ataques
-        */        
-        
-        return retornaAtaquePokemon(1);
+        opcao = entrada.nextInt();
+        switch(opcao) {
+        case 1: return getProximoPokemon().getAtaque1();
+        case 2: return getProximoPokemon().getAtaque2();
+        case 3: return getProximoPokemon().getAtaque3();
+        case 4: return getProximoPokemon().getAtaque4();
+        default: System.out.printf("Ataque escolhido invalido"); return getProximoPokemon().getAtaque1();
+        }      
     }
 
     private Pokemon escolheNovoPokemon() {
@@ -65,10 +72,9 @@ public class JogadorHumano extends Jogador{
     private int pedeAcaoJogador(Pokemon adversario) {
         
         System.out.printf("Adversario com o pokémon " + adversario.toString() + " posicionado. O que deseja fazer?\n1-Atacar\n2-Trocar pokémon ativo");
-        /*
-            Implementar leitura da entrada do usuário
-        */
-        return 1;
+        opcao = entrada.nextInt();
+        if(opcao==1) return 1;
+        return 2;
     }
 
     @Override

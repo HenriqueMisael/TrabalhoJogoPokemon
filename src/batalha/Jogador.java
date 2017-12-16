@@ -20,6 +20,7 @@ public abstract class Jogador {
         this.id = id;
     }
     
+    //METODOS
     protected int getId() {
         return id;
     }
@@ -41,9 +42,8 @@ public abstract class Jogador {
     
     public Pokemon getProximoPokemon() {
         return listaPokemons.get(0);
-    }
+    }    
     
-    //METODOS
     public void trocarPokemon(Pokemon pokemon){
 
         int posicao = listaPokemons.indexOf(pokemon); //Posicao em que esta o pokemon que vai para o inicio da lista
