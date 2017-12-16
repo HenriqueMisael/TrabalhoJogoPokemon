@@ -7,6 +7,7 @@ import java.io.IOException;
 import pokemon.Tipo;
 
 public class TabelaDeEspecies {
+    //ATRIBUTOS
 	private String[][] tabelaPokemons = new String[151][9];
 	
 	//CONSTRUTOR (Cria a matriz a partir do arquivo)

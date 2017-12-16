@@ -12,15 +12,16 @@ import pokemon.Pokemon;
 public class ArquitetoSimulacao {
 
     static TabelaDeEspecies tabelaEspecies = new TabelaDeEspecies("Tabela_Especies.txt");
-    static TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");      
+    static TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");   
+    private static int criaId = 0;
     
     public static Jogador retornaJogadorConformeTipo(int tipoJogador) {
         
         Jogador p = null;
         
         switch( tipoJogador ) {
-            case 0: p = new JogadorMaquina();break;
-            case 1: p = new JogadorHumano("Henrique");break;
+            case 0: p = new JogadorMaquina(criaId++);break;
+            case 1: p = new JogadorHumano(criaId++);break;
         }
 
         return p;

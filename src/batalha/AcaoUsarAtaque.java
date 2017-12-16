@@ -2,6 +2,7 @@ package batalha;
 
 import ataques.Ataque;
 import pokemon.Pokemon;
+import pokemon.Status;
 
 public class AcaoUsarAtaque implements AcaoJogador {
 
@@ -18,12 +19,16 @@ public class AcaoUsarAtaque implements AcaoJogador {
 
     @Override
     public String message() {
-        return atacante.getEspecie().toString() + " usou " + ataque.toString() + " em " + alvo.getEspecie().toString() + ".";
+        return atacante.getEspecie().toString() + " usa " + ataque.toString() + " em " + alvo.getEspecie().toString() + ".";
     }
     
     @Override
     public AcaoJogador executa() {
-        ataque.efeito(atacante, alvo, getPlayer());
+        if(atacante.getStatus()==Status.FAINTED) {
+            System.out.println("(" + atacante.getEspecie() + " morreu e não pode atacar.)");
+        }else{     
+            ataque.efeito(atacante, alvo, getPlayer());            
+        }
         return ataque.getRetorno();
     }
 

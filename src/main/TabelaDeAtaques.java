@@ -8,12 +8,15 @@ import java.util.StringTokenizer;
 import pokemon.Tipo;
 
 public class TabelaDeAtaques {
+    //ATRIBUTOS
 	private String[][] tabelaAtaques = new String[165][8];
 	
+	//CONSTRUTOR (Cria a matriz a partir do arquivo)
 	public TabelaDeAtaques(String caminho){
 		carregarTabelaAtaques(caminho);
 	}
 	
+	//METODOS
 	public void carregarTabelaAtaques(String caminho){
         BufferedReader conteudo;
         String linha;
@@ -21,7 +24,7 @@ public class TabelaDeAtaques {
         
         int i=0, j=0;
         
-        //Ler tabela de especies (pokemons)
+        //Ler tabela de ataques
         try{
             conteudo = new BufferedReader(new FileReader(caminho));
             while (i<165){

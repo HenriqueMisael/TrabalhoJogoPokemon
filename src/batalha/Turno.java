@@ -41,14 +41,13 @@ public class Turno {
     
     private void executaAcao(AcaoJogador acao) {
         
+        System.out.println(acao.message());
         AcaoJogador newAcaoJogador = acao.executa();
         
         if(acao.getPlayer() == 1)
             acaoJogador1 = newAcaoJogador;
         else
             acaoJogador2 = newAcaoJogador;
-        
-        System.out.println(acao.message());
     }
     
     private LinkedList<AcaoJogador> calculaOrdem(){
