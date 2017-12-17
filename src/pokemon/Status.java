@@ -2,6 +2,7 @@ package pokemon;
 
 import ataques.AttackDamage;
 import ataques.AttackHit;
+import util.DefaultOutput;
 import util.Probabilidade;
 
 public enum Status {
@@ -35,10 +36,13 @@ public enum Status {
     }, BURN{
         @Override
         public void aplicaEfeitoPosTurno(Pokemon afetado) {
-            afetado.reduzHp(afetado.getHpMax()*6.25);
+            double dano = afetado.getHpMax()*6.25;
+            DefaultOutput.message(String.format("%s sofreu %.2f de dano por está sujeito a BURN.", afetado, dano));
+            afetado.reduzHp(dano);
         }
         @Override
         public void aplicaEfeitoDano(AttackDamage dano) {
+            DefaultOutput.message("O ataque foi reduzido pela metade devido ao pokémon estar sob efeito de BURN.");
             dano.attack /= 2;
         }
         @Override
@@ -48,8 +52,11 @@ public enum Status {
     }, FROZEN{
         @Override
         public void aplicaEfeitoPosTurno(Pokemon afetado) {
-            if(Probabilidade.calcula(10))
+            DefaultOutput.message(String.format("%s tenta se livrar de FROZEN...", afetado));
+            if(Probabilidade.calcula(10)) {
+                DefaultOutput.message("e consegue.");
                 afetado.setStatus(Status.OK);
+            }else DefaultOutput.message("e falha.");
         }
         @Override
         public void aplicaEfeitoDano(AttackDamage dano) {
@@ -57,6 +64,7 @@ public enum Status {
         }
         @Override
         public void aplicaEfeitoAcerto(AttackHit acerto) {
+            DefaultOutput.message("A chance de acerto desceu em 100% por causa do estado FROZEN.");
             acerto.attackAccuracy -= 1;
         }   
     }, PARALYSIS{
@@ -70,12 +78,15 @@ public enum Status {
         }
         @Override
         public void aplicaEfeitoAcerto(AttackHit acerto) {
+            DefaultOutput.message("A chance de acerto desceu em 25% por causa do estado PARALYSIS.");
             acerto.attackAccuracy -= 0.25;
         }   
     }, POISON{
         @Override
         public void aplicaEfeitoPosTurno(Pokemon afetado) {
-            afetado.reduzHp(afetado.getHpMax()*6.25);
+            double dano = afetado.getHpMax()*6.25;
+            DefaultOutput.message(String.format("%s sofreu %.2f de dano por está sujeito a POISON.", afetado, dano));
+            afetado.reduzHp(dano);
         }
         @Override
         public void aplicaEfeitoDano(AttackDamage dano) {
@@ -88,8 +99,11 @@ public enum Status {
     }, SLEEP {
         @Override
         public void aplicaEfeitoPosTurno(Pokemon afetado) {
-            if(Probabilidade.calcula(20))
+            DefaultOutput.message(String.format("%s tenta se livrar de SLEEP...", afetado));
+            if(Probabilidade.calcula(20)) {
+                DefaultOutput.message("e consegue.");
                 afetado.setStatus(Status.OK);
+            }else DefaultOutput.message("e falha.");
         }
         @Override
         public void aplicaEfeitoDano(AttackDamage dano) {
@@ -97,6 +111,7 @@ public enum Status {
         }
         @Override
         public void aplicaEfeitoAcerto(AttackHit acerto) {
+            DefaultOutput.message("A chance de acerto desceu em 100% por causa do estado SLEEP.");
             acerto.attackAccuracy -= 1;
         }   
     };
