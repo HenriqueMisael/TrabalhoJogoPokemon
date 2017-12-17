@@ -20,8 +20,16 @@ public class JogadorHumano extends Jogador{
     public AcaoJogador escolherComando(Jogador adversario){
         
         AcaoJogador acao;
+        int acaoEscolhida;
         
-        switch(pedeAcaoJogador(adversario)) {
+        if(quantidadePokemonsUtilizaveis() > 1)
+            acaoEscolhida = pedeAcaoJogador(adversario);
+        else {
+            System.out.println(String.format("Apenas %s está disponível para uso, ação escolhida automaticamente: Atacar.", this.getProximoPokemon()));
+            acaoEscolhida = 1;
+        }
+        
+        switch(acaoEscolhida) {
             case 1: acao = new AcaoUsarAtaque(this.getProximoPokemon(),adversario,escolheAtaqueUsar(), getId());break;
             case 2: acao = new AcaoTrocarPokemon(this ,escolheNovoPokemon());break;
             default: acao = null;
@@ -58,9 +66,10 @@ public class JogadorHumano extends Jogador{
         
         System.out.printf("\nEscolha o pokémon para selecionar:");
         for(i = 1; i < getListaPokemons().size(); i++) {
-            if( getListaPokemons().get(i).getStatus() != Status.FAINTED )
+            if( getListaPokemons().get(i).getStatus() != Status.FAINTED ) {
                 System.out.printf("\n%d - %s", i, getListaPokemons().get(i).toString());
-        }
+            }
+        }    
         
         escolhido = entrada.nextInt();
         
@@ -71,6 +80,8 @@ public class JogadorHumano extends Jogador{
 
         if(getListaPokemons().get(escolhido).getStatus() == Status.FAINTED) {
             int novoEscolhido = -1;
+            
+            System.out.println(String.format("Pokémon %s está morto, o próximo vivo será escolhido.",getListaPokemons().get(escolhido)));
             
             for(i = 1; i < getListaPokemons().size(); i++) {
                 if( getListaPokemons().get(i).getStatus() != Status.FAINTED )

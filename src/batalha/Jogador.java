@@ -34,10 +34,18 @@ public abstract class Jogador {
     }
     
     public boolean temPokemonUtilizavel() {        
+        return quantidadePokemonsUtilizaveis() > 0;        
+    }
+    
+    public int quantidadePokemonsUtilizaveis() {        
+        
+        int quantidade = 0;
+        
         for( Pokemon p : listaPokemons )
             if(p.getStatus() != pokemon.Status.FAINTED)
-                return true;
-        return false;        
+                quantidade++;
+        
+        return quantidade;        
     }
     
     public Pokemon getProximoPokemon() {

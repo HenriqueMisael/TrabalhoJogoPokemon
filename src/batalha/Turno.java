@@ -4,22 +4,23 @@ import java.util.LinkedList;
 
 public class Turno {
 
-    AcaoJogador acaoJogador1, acaoJogador2;
+    private static AcaoJogador acaoJogador1;
+    static AcaoJogador acaoJogador2;
     
     public Turno( AcaoJogador acaoJogador1, AcaoJogador acaoJogador2 ) {
-        this.acaoJogador1 = acaoJogador1;
-        this.acaoJogador2 = acaoJogador2;
+        this.setAcaoJogador1(acaoJogador1);
+        this.setAcaoJogador2(acaoJogador2);
     }
 
     public Turno( AcaoJogador acaoJogador ) {
-        if(this.acaoJogador1 == null)        
-            this.acaoJogador1 = acaoJogador;
+        if(this.getAcaoJogador1() == null)        
+            this.setAcaoJogador1(acaoJogador);
         else
-            this.acaoJogador2 = acaoJogador;
+            this.setAcaoJogador2(acaoJogador);
     }
     
     public int carregado() {
-        if(acaoJogador1 != null) {
+        if(getAcaoJogador1() != null) {
             if( acaoJogador2 != null ) {
                 return -1;
             }else return 1;
@@ -45,7 +46,7 @@ public class Turno {
         AcaoJogador newAcaoJogador = acao.executa();
         
         if(acao.getPlayer() == 1)
-            acaoJogador1 = newAcaoJogador;
+            setAcaoJogador1(newAcaoJogador);
         else
             acaoJogador2 = newAcaoJogador;
     }
@@ -54,14 +55,30 @@ public class Turno {
         
         LinkedList<AcaoJogador> ordem = new LinkedList<AcaoJogador>();
         
-        if( acaoJogador1.getPriority() >= acaoJogador2.getPriority() ) {
-            ordem.add(acaoJogador1);
+        if( getAcaoJogador1().getPriority() >= acaoJogador2.getPriority() ) {
+            ordem.add(getAcaoJogador1());
             ordem.add(acaoJogador2);
         }else {
             ordem.add(acaoJogador2);
-            ordem.add(acaoJogador1);
+            ordem.add(getAcaoJogador1());
         }       
                
         return ordem;
+    }
+
+    public AcaoJogador getAcaoJogador1() {
+        return acaoJogador1;
+    }
+
+    public AcaoJogador getAcaoJogador2() {
+        return acaoJogador2;
+    }
+
+    public void setAcaoJogador1(AcaoJogador acaoJogador1) {
+        Turno.acaoJogador1 = acaoJogador1;
+    }
+    
+    public void setAcaoJogador2(AcaoJogador acaoJogador2) {
+        Turno.acaoJogador2 = acaoJogador2;
     }
 }
