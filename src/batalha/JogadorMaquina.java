@@ -2,7 +2,6 @@
 package batalha;
 
 import ataques.Ataque;
-import pokemon.Pokemon;
 import util.Probabilidade;
 
 public class JogadorMaquina extends Jogador{
@@ -12,7 +11,7 @@ public class JogadorMaquina extends Jogador{
     }
     
     @Override
-    public AcaoJogador escolherComando(Pokemon adversario){
+    public AcaoJogador escolherComando(Jogador adversario){
         
         return new AcaoUsarAtaque(getProximoPokemon(),adversario,retornaAtaquePokemon(),getId());
     }
@@ -34,6 +33,6 @@ public class JogadorMaquina extends Jogador{
 
 	@Override
     public String toString() {
-        return "Jogador Maquina:" + super.toString();
+        return "Jogador Maquina " + super.toString();
     }
 }

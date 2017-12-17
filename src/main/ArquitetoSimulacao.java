@@ -13,7 +13,7 @@ public class ArquitetoSimulacao {
 
     static TabelaDeEspecies tabelaEspecies = new TabelaDeEspecies("Tabela_Especies.txt");
     static TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");   
-    private static int criaId = 0;
+    private static int criaId = 1;
     
     public static Jogador retornaJogadorConformeTipo(int tipoJogador) {
         
@@ -62,38 +62,38 @@ public class ArquitetoSimulacao {
         
         modificadores = tabelaAtaques.getParametros(id);
         tipo = tabelaAtaques.getClasse(id);
-        
-        if(tipo == "charge") {
+                
+        if(tipo.equals("charge")) {
             ataque = new AtaqueCharge(id, tabelaAtaques.getNome(id),
                                           tabelaAtaques.getPP(id),
                                           tabelaAtaques.getPower(id),
                                           tabelaAtaques.getAccuracy(id),
                                           tabelaAtaques.getType(id));
-        }else if(tipo == "fixo") {
+        }else if(tipo.equals("fixo")) {
             ataque = new AtaqueFixo(id, tabelaAtaques.getNome(id),
                                         tabelaAtaques.getPP(id),
                                         tabelaAtaques.getPower(id),
                                         tabelaAtaques.getAccuracy(id),
                                         tabelaAtaques.getType(id),
                                         Integer.parseInt(modificadores[0]));
-        }else if(tipo == "hp") {
+        }else if(tipo.equals("hp")) {
             ataque = new AtaqueHp(id, tabelaAtaques.getNome(id),
                                       tabelaAtaques.getPP(id),
                                       tabelaAtaques.getPower(id),
                                       tabelaAtaques.getAccuracy(id),
                                       tabelaAtaques.getType(id),
-                                      Integer.parseInt(modificadores[0]),
+                                      modificadores[0],
                                       Double.parseDouble(modificadores[1]));
-        }else if(tipo == "modifier") {
+        }else if(tipo.equals("modifier")) {
             ataque = new AtaqueModifier(id, tabelaAtaques.getNome(id),
                                             tabelaAtaques.getPP(id),
                                             tabelaAtaques.getPower(id),
                                             tabelaAtaques.getAccuracy(id),
                                             tabelaAtaques.getType(id),
-                                            Integer.parseInt(modificadores[0]),
+                                            modificadores[0],
                                             Integer.parseInt(modificadores[1]),
                                             Integer.parseInt(modificadores[2]));
-        }else if(tipo == "multihit") {
+        }else if(tipo.equals("multihit")) {
             ataque = new AtaqueMultiHit(id, tabelaAtaques.getNome(id),            
                                             tabelaAtaques.getPP(id),              
                                             tabelaAtaques.getPower(id),           
@@ -101,7 +101,7 @@ public class ArquitetoSimulacao {
                                             tabelaAtaques.getType(id),            
                                             Integer.parseInt(modificadores[0]),   
                                             Integer.parseInt(modificadores[1]));
-        }else if(tipo == "status") {
+        }else if(tipo.equals("status")) {
             ataque = new AtaqueStatus(id, tabelaAtaques.getNome(id),          
                                           tabelaAtaques.getPP(id),            
                                           tabelaAtaques.getPower(id),         

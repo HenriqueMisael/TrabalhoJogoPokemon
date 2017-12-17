@@ -67,17 +67,11 @@ public abstract class Jogador {
     	return ataqueRetorno;
     }
     
-    public abstract AcaoJogador escolherComando(Pokemon adversario);
+    public abstract AcaoJogador escolherComando(Jogador adversario);
     
     @Override
     public String toString() {
-        
-        String retorno = "";
-        
-        for(Pokemon p:listaPokemons) {
-            retorno += "\n"+p.toString();
-        }
-        return retorno;
+        return new Integer(getId()).toString();
     }
 }
 
