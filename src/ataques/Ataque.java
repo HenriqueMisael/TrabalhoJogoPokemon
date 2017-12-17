@@ -3,7 +3,6 @@ package ataques;
 import batalha.AcaoJogador;
 import batalha.Jogador;
 import pokemon.Pokemon;
-import pokemon.Status;
 import pokemon.Tipo;
 import util.Probabilidade;
 
@@ -83,17 +82,20 @@ public class Ataque {
     
     protected boolean calculoAcerto(Pokemon atacante, Pokemon atacado) {
         
-        double accuracy, evasion;
+        AttackHit hit = new AttackHit();
         
-        accuracy = retornaValorConformeModificador(atacante.getModifierAccuracy());
-        evasion = retornaValorConformeModificador(atacado.getModifierEvasion());
+        hit.attackAccuracy = this.accuracy;
+        hit.accuracy = retornaValorConformeModificador(atacante.getModifierAccuracy());
+        hit.evasion = retornaValorConformeModificador(atacado.getModifierEvasion());
         
-        return util.Probabilidade.calcula(this.accuracy*(accuracy/evasion));
+        atacante.getStatus().aplicaEfeitoAcerto(hit);
+        
+        return hit.calculate();
     }
 
     protected double calculoDano(Pokemon atacante, Pokemon atacado, double modificadorLevel) {
         
-        double danoBase, attack, defense;
+        AttackDamage instanciaAtual = new AttackDamage();
         
         switch(tipo) {
             case NORMAL:
@@ -104,8 +106,8 @@ public class Ataque {
             case ROCK:
             case BUG:
             case GHOST:
-                attack = atacante.getAttack();
-                defense = atacado.getDefense();
+                instanciaAtual.attack = atacante.getAttack();
+                instanciaAtual.defense = atacado.getDefense();
                 break;
             case FIRE:
             case WATER:
@@ -114,39 +116,38 @@ public class Ataque {
             case ICE:
             case PSYCHIC:
             case DRAGON:
-                attack = atacante.getSpecial();
-                defense = atacado.getSpecial();
+                instanciaAtual.attack = atacante.getSpecial();
+                instanciaAtual.defense = atacado.getSpecial();
                 break;
         default:
-                attack = 0;
-                defense = 0;                
+                instanciaAtual.attack = 0;
+                instanciaAtual.defense = 0;                
             break;                
         }
         
         /*
             Se o usuário estiver afetado por BURNED, seu ataque é dividido pela metade
         */
-        if(atacante.getStatus() == Status.BURN)
-            attack /= 2;
+        atacante.getStatus().aplicaEfeitoDano(instanciaAtual);
         
         /*
             Corrige os valores máximos e mínimmos
         */
-        attack = Double.max(Double.min(attack, 255),0);
-        defense = Double.max(Double.min(defense, 255),0);
+        instanciaAtual.attack = Double.max(Double.min(instanciaAtual.attack, 255),0);
+        instanciaAtual.defense = Double.max(Double.min(instanciaAtual.defense, 255),0);
         
         /*
             Calcula o dano base
         */
-        danoBase = modificadorLevel * attack * power / defense / 50 + 2;
+        instanciaAtual.damage = modificadorLevel * instanciaAtual.attack * power / instanciaAtual.defense / 50 + 2;
         
         if(tipo == atacante.getEspecie().getTipo1() || tipo == atacante.getEspecie().getTipo2())
-            danoBase *= 1.5;
+            instanciaAtual.damage*= 1.5;
         
-        danoBase *= tipo.calculaBonus(atacado.getEspecie().getTipo1());
-        danoBase *= tipo.calculaBonus(atacado.getEspecie().getTipo2());
+        instanciaAtual.damage *= tipo.calculaBonus(atacado.getEspecie().getTipo1());
+        instanciaAtual.damage *= tipo.calculaBonus(atacado.getEspecie().getTipo2());
     
-        return danoBase * util.Probabilidade.getRandom(217, 255)/255;
+        return instanciaAtual.damage * util.Probabilidade.getRandom(217, 255)/255;
     }
     
     protected boolean calculoCritico(double speed) {
@@ -182,7 +183,7 @@ public class Ataque {
     }
 
     public String message(Pokemon atacante, Jogador adversario) {
-        return String.format("%s usa %s em%s.", atacante, this, adversario.getProximoPokemon());
+        return String.format("%s usa %s em %s.", atacante, this, adversario.getProximoPokemon());
     }
     
 }

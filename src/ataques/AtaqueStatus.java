@@ -17,11 +17,11 @@ public class AtaqueStatus extends Ataque {
     public static final int INFLIGE_STATUS_CONFUSION = 7;
     public static final int INFLIGE_STATUS_FLINCH    = 8;
     
-    private int status;
+    private Status status;
 	private int chance;	
 	
 	public AtaqueStatus(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo,
-            int status, int chance) {
+            Status status, int chance) {
         super(id, nome, maxPowerPoints, power, accuracy, tipo);
         this.status = status;
         this.chance = chance;
@@ -35,37 +35,6 @@ public class AtaqueStatus extends Ataque {
         super.efeito(atacante, adversario, player);
 	    
 	    if(Probabilidade.calcula(new Double(chance)))
-	        aplicaStatus(atacado);
+	        atacado.setStatus(status);
 	}
-	
-	private void aplicaStatus(Pokemon atacado) {
-	    
-	    switch(this.status) {
-    	    case INFLIGE_STATUS_BURN:
-   	            atacado.setStatus(Status.BURN);
-    	        break;
-    	    case INFLIGE_STATUS_FROZEN:
-    	        atacado.setStatus(Status.FROZEN);
-                break;
-    	    case INFLIGE_STATUS_PARALYSIS:
-    	        atacado.setStatus(Status.PARALYSIS);
-                break;    	    
-    	    case INFLIGE_STATUS_POISON:   
-    	        atacado.setStatus(Status.POISON);
-                break;
-    	    case INFLIGE_STATUS_SLEEP:    
-    	        atacado.setStatus(Status.SLEEP);
-                break;
-    	    case INFLIGE_STATUS_FAINTED:  
-    	        atacado.setStatus(Status.FAINTED);
-                break;
-    	    case INFLIGE_STATUS_CONFUSION:
-    	        atacado.setConfusion(true);
-                break;
-    	    case INFLIGE_STATUS_FLINCH:
-    	        atacado.setFlinch(true);
-                break;
-	    }
-	}
-
 }
