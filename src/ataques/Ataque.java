@@ -1,6 +1,7 @@
 package ataques;
 
 import batalha.AcaoJogador;
+import batalha.Jogador;
 import pokemon.Pokemon;
 import pokemon.Status;
 import pokemon.Tipo;
@@ -30,9 +31,10 @@ public class Ataque {
         restauraAtaques();
     }
 
-    public void efeito(Pokemon atacante, Pokemon atacado, int player) {
+    public void efeito(Pokemon atacante, Jogador adversario, int player) {
     	
         double modificadorLevel;
+        Pokemon atacado = adversario.getProximoPokemon();
         
         if( currentPowerPoints > 0 ) {
             reduzPP();
@@ -177,6 +179,10 @@ public class Ataque {
 
     public AcaoJogador getRetorno() {
         return retorno;
+    }
+
+    public String message(Pokemon atacante, Jogador adversario) {
+        return atacante.getEspecie().toString() + " usa " + this.toString() + " em " + adversario.getProximoPokemon().getEspecie().toString() + ".";
     }
     
 }

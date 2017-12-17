@@ -1,5 +1,6 @@
 package ataques;
 
+import batalha.Jogador;
 import pokemon.Pokemon;
 import pokemon.Status;
 import pokemon.Tipo;
@@ -27,8 +28,11 @@ public class AtaqueStatus extends Ataque {
     }
 
     @Override
-	public void efeito( Pokemon atacante, Pokemon atacado, int player ) {
-	    super.efeito(atacante, atacado, player);
+	public void efeito( Pokemon atacante, Jogador adversario, int player ) {
+	    
+        Pokemon atacado = adversario.getProximoPokemon();
+        
+        super.efeito(atacante, adversario, player);
 	    
 	    if(Probabilidade.calcula(new Double(chance)))
 	        aplicaStatus(atacado);

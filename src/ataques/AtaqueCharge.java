@@ -1,5 +1,6 @@
 package ataques;
 
+import pokemon.Pokemon;
 import pokemon.Tipo;
 
 public class AtaqueCharge extends Ataque {
@@ -9,9 +10,18 @@ public class AtaqueCharge extends Ataque {
     }
     
     @Override
-	public void efeito(pokemon.Pokemon atacante, pokemon.Pokemon atacado, int player) {
+    public void efeito(Pokemon atacante, batalha.Jogador adversario, int player) {
 		Ataque ataque = new Ataque(getId(), getNome(), 1, getPower(), getAccuracy(), getTipo());
         
-        this.retorno = new batalha.AcaoUsarAtaque(atacante, atacado, ataque, player);
+        this.retorno = new batalha.AcaoUsarAtaque(atacante, adversario, ataque, player);
 	}
+    
+    public String message(Pokemon atacante) {
+        return atacante.getEspecie().toString() + " prepara " + this.toString() + ".";
+    }
+    
+    @Override
+    public String toString() {
+        return "charge"+super.toString();
+    }
 }

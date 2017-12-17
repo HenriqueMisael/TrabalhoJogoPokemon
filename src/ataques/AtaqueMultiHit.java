@@ -17,8 +17,9 @@ public class AtaqueMultiHit extends Ataque {
     }
 
     @Override
-	public void efeito(Pokemon atacante, Pokemon atacado, int player) {
+	public void efeito(Pokemon atacante, batalha.Jogador adversario, int player) {
         
+        Pokemon atacado = adversario.getProximoPokemon();
 	    double modificadorLevel;
 	    int numeroAtaques;
         

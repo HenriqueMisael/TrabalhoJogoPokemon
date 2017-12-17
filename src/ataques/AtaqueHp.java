@@ -1,5 +1,6 @@
 package ataques;
 
+import batalha.Jogador;
 import pokemon.Pokemon;
 import pokemon.Tipo;
 
@@ -11,17 +12,27 @@ public class AtaqueHp extends Ataque {
 	private int valor;
 	private double porcentagem;
 	
-	public AtaqueHp(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo, int valor,
+	public AtaqueHp(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo, String tipoRecuperacao,
             double porcentagem) {
         super(id, nome, maxPowerPoints, power, accuracy, tipo);
-        this.valor = valor;
+        this.valor = tipoRecuperacao_FromString_ToInt(tipoRecuperacao.toLowerCase());
         this.porcentagem = porcentagem;
     }
 
+    private int tipoRecuperacao_FromString_ToInt(String tipoRecuperacao) {
+        
+        if(tipoRecuperacao.equals("dano"))
+            return CURA_CONFORME_DANO;
+        else if(tipoRecuperacao.equals("max_hp"))
+            return CURA_CONFORME_VIDA;
+        
+        return 0;
+    }
 
     @Override
-	public void efeito(Pokemon atacante, Pokemon atacado, int player) {
+	public void efeito(Pokemon atacante, Jogador adversario, int player) {
         double modificadorLevel, dano, cura;
+        Pokemon atacado = adversario.getProximoPokemon();
         
         super.reduzPP();
         
