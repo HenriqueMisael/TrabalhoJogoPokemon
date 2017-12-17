@@ -2,6 +2,8 @@ package batalha;
 
 import java.util.LinkedList;
 
+import util.DefaultOutput;
+
 public class Turno {
 
     private static AcaoJogador acaoJogador1;
@@ -42,7 +44,7 @@ public class Turno {
     
     private void executaAcao(AcaoJogador acao) {
         
-        System.out.println(acao.message());
+        DefaultOutput.message(acao.message());
         AcaoJogador newAcaoJogador = acao.executa();
         
         if(acao.getPlayer() == 1)

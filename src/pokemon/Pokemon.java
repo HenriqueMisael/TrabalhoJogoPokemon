@@ -2,6 +2,7 @@
 package pokemon;
 
 import ataques.Ataque;
+import util.DefaultOutput;
 
 public class Pokemon {
 
@@ -184,9 +185,9 @@ public class Pokemon {
         
         if(hpAtual == 0) {
             setStatus(Status.FAINTED);
-            System.out.println(String.format("%s sofreu %.2f de dano e morreu.", this, dano));
+            DefaultOutput.message(String.format("%s sofreu %.2f de dano e morreu.", this, dano));
         }else {
-        	System.out.println(String.format("%s sofreu %.2f de dano.", this, dano));
+        	DefaultOutput.message(String.format("%s sofreu %.2f de dano.", this, dano));
         }
     }
 
