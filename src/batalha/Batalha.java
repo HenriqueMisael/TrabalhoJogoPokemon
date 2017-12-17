@@ -19,17 +19,21 @@ public class Batalha {
     //METODOS
     public void start() {
 
-        int vencedor = 0, numeroTurno = 1;
+        Jogador vencedor = null;
+        int numeroTurno = 1;
         Turno turno = new Turno(null,null);
         
-        while( vencedor == 0 ) {
+        System.out.println(String.format("Time 1 (%s): %s", time1, time1.getListaPokemons().toString()));
+        System.out.println(String.format("Time 2 (%s): %s", time2, time2.getListaPokemons().toString()));
+        
+        while( vencedor == null ) {
             
             System.out.println("-------------------------------------------------");
             System.out.println(String.format("Início do turno %d.",numeroTurno++));
             switch(turno.carregado()) {
-                case 0: turno = new Turno(time1.escolherComando(time2.getProximoPokemon()), time2.escolherComando(time1.getProximoPokemon()));break;
-                case 1: turno = new Turno(time2.escolherComando(time1.getProximoPokemon()));break;
-                case 2: turno = new Turno(time1.escolherComando(time2.getProximoPokemon()));break;
+                case 0: turno = new Turno(time1.escolherComando(time2), time2.escolherComando(time1));break;
+                case 1: turno = new Turno(time2.escolherComando(time1));break;
+                case 2: turno = new Turno(time1.escolherComando(time2));break;
             }
             delay();
             turno.executaAcoes();
@@ -45,12 +49,12 @@ public class Batalha {
                 Verifica vitória
             */
             if( !time1.temPokemonUtilizavel() )
-                vencedor = 2;
+                vencedor = time2;
             else if( !time2.temPokemonUtilizavel() )
-                vencedor = 1;
+                vencedor = time1;
         }
         
-        System.out.println(String.format("Vencedor: Jogador %d", vencedor));
+        System.out.println(String.format("Vencedor: %s", vencedor));
     }
 
     private void delay() {
@@ -65,12 +69,12 @@ public class Batalha {
     private void trocaPokemonSeFainted(Jogador time) {
         
         if(time.getProximoPokemon().getStatus() == Status.FAINTED) {
-            int i;
+            int i = 0;
             List<Pokemon> lista = time.getListaPokemons();
             
-            for(i = 0; i < lista.size(); i++)
-                if(lista.get(i).getStatus() != Status.FAINTED)
-                    break;
+            do {
+                i++;
+            }while(i < lista.size() && lista.get(i).getStatus() == Status.FAINTED);
             
             if(i < lista.size())
                 time.trocarPokemon(lista.get(i));

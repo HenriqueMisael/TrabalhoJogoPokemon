@@ -6,17 +6,15 @@ public class AcaoTrocarPokemon implements AcaoJogador {
 
     private Jogador agente;
     private Pokemon novoPokemon;
-    private int player;
     
-    public AcaoTrocarPokemon(Jogador agente, Pokemon novoPokemon, int player) {
+    public AcaoTrocarPokemon(Jogador agente, Pokemon novoPokemon) {
         this.agente = agente;
         this.novoPokemon = novoPokemon;
-        this.player = player;
     }
 
     @Override
     public String message() {
-        return agente.getId() + " trocou o pokémon " + novoPokemon.getEspecie().toString() + " para o início da fila.";
+        return agente.toString() + " trocou o pokémon " + novoPokemon.getEspecie().toString() + " para o início da fila.";
     }
     
     @Override
@@ -27,6 +25,11 @@ public class AcaoTrocarPokemon implements AcaoJogador {
 
     @Override
     public int getPlayer() {
-        return player;
+        return agente.getId();
+    }
+    
+    @Override
+    public double getPriority() {        
+        return 999.999;        
     }
 }

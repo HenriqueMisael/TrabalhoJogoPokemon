@@ -54,9 +54,14 @@ public class Turno {
         
         LinkedList<AcaoJogador> ordem = new LinkedList<AcaoJogador>();
         
-        ordem.add(acaoJogador1);
-        ordem.add(acaoJogador2);
-        
+        if( acaoJogador1.getPriority() >= acaoJogador2.getPriority() ) {
+            ordem.add(acaoJogador1);
+            ordem.add(acaoJogador2);
+        }else {
+            ordem.add(acaoJogador2);
+            ordem.add(acaoJogador1);
+        }       
+               
         return ordem;
     }
 }

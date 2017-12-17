@@ -10,4 +10,5 @@ public interface AcaoJogador {
     public String message();
     public boolean equals( Object obj );
     public int getPlayer();
+    public double getPriority();
 }
