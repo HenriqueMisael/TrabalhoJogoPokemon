@@ -182,7 +182,7 @@ public class Ataque {
     }
 
     public String message(Pokemon atacante, Jogador adversario) {
-        return atacante.getEspecie().toString() + " usa " + this.toString() + " em " + adversario.getProximoPokemon().getEspecie().toString() + ".";
+        return String.format("%s usa %s em%s.", atacante, this, adversario.getProximoPokemon());
     }
     
 }

@@ -16,12 +16,8 @@ public class AtaqueCharge extends Ataque {
         this.retorno = new batalha.AcaoUsarAtaque(atacante, adversario, ataque, player);
 	}
     
-    public String message(Pokemon atacante) {
-        return atacante.getEspecie().toString() + " prepara " + this.toString() + ".";
-    }
-    
     @Override
-    public String toString() {
-        return "charge"+super.toString();
+    public String message(Pokemon atacante, batalha.Jogador adversario) {
+        return String.format("%s prepara %s contra %s.", atacante, this, adversario.getProximoPokemon());
     }
 }
