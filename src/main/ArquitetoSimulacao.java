@@ -8,6 +8,7 @@ import batalha.JogadorHumano;
 import batalha.JogadorMaquina;
 import pokemon.Especie;
 import pokemon.Pokemon;
+import pokemon.Status;
 
 public class ArquitetoSimulacao {
 
@@ -107,7 +108,7 @@ public class ArquitetoSimulacao {
                                           tabelaAtaques.getPower(id),         
                                           tabelaAtaques.getAccuracy(id),      
                                           tabelaAtaques.getType(id),          
-                                          Integer.parseInt(modificadores[0]), 
+                                          Status.valueOf(modificadores[0].toUpperCase()), 
                                           Integer.parseInt(modificadores[1]));
         }else {
             ataque = new Ataque(id, tabelaAtaques.getNome(id),          

@@ -41,6 +41,8 @@ public class Pokemon {
         this.modifierDef = 0;
         this.modifierSpe = 0;
         this.modifierSpd = 0;
+        
+        this.status = Status.OK;
     }
     
     private void calculaAtributos() {
