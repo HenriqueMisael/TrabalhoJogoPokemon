@@ -48,7 +48,7 @@ public class Pokemon {
     
     private void calculaAtributos() {
         hpMax = especie.calculaHpMax(level);
-        hpAtual = especie.calculaHpAtual(level);
+        hpAtual = hpMax;
         attack = especie.calculaAttack(level);
         defense = especie.calculaDefense(level);
         special = especie.calculaSpecial(level);

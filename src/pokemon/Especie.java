@@ -30,11 +30,7 @@ public class Especie {
     }
 
     double calculaHpMax(int level) {
-        return 110 + level;
-    }
-
-    double calculaHpAtual(int level) {
-        return  calculaAtributo( level, baseHp );
+        return 2 * baseHp * level / 100 + level + 10;
     }
 
     double calculaAttack(int level) {
@@ -62,7 +58,7 @@ public class Especie {
     }
     
     private double calculaAtributo(int level, double base) {
-        return  2 * base * level / 105; 
+        return  2 * base * level / 100 + 5; 
     }
     
     @Override
