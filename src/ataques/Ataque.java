@@ -4,6 +4,7 @@ import batalha.AcaoJogador;
 import batalha.Jogador;
 import pokemon.Pokemon;
 import pokemon.Tipo;
+import util.DefaultOutput;
 import util.Probabilidade;
 
 public class Ataque {
@@ -48,7 +49,7 @@ public class Ataque {
                     modificadorLevel *= 2;
                 
         		atacado.reduzHp(calculoDano( atacante, atacado, modificadorLevel ));
-        	}
+        	}else DefaultOutput.message(String.format("%s errou o ataque.", atacante));
         }
     }
     

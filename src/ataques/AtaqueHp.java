@@ -3,6 +3,7 @@ package ataques;
 import batalha.Jogador;
 import pokemon.Pokemon;
 import pokemon.Tipo;
+import util.DefaultOutput;
 
 public class AtaqueHp extends Ataque {
 
@@ -55,7 +56,7 @@ public class AtaqueHp extends Ataque {
             
             atacado.reduzHp(dano);
             atacante.curaHp(cura);
-        }
+        }else DefaultOutput.message(String.format("%s errou o ataque.", atacante));
 	}
 
 }

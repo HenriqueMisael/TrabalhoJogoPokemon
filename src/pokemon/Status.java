@@ -36,7 +36,7 @@ public enum Status {
     }, BURN{
         @Override
         public void aplicaEfeitoPosTurno(Pokemon afetado) {
-            double dano = afetado.getHpMax()*6.25;
+            double dano = afetado.getHpMax()*0.0625;
             DefaultOutput.message(String.format("%s sofreu %.2f de dano por está sujeito a BURN.", afetado, dano));
             afetado.reduzHp(dano);
         }
@@ -84,7 +84,7 @@ public enum Status {
     }, POISON{
         @Override
         public void aplicaEfeitoPosTurno(Pokemon afetado) {
-            double dano = afetado.getHpMax()*6.25;
+            double dano = afetado.getHpMax()*0.0625;
             DefaultOutput.message(String.format("%s sofreu %.2f de dano por está sujeito a POISON.", afetado, dano));
             afetado.reduzHp(dano);
         }

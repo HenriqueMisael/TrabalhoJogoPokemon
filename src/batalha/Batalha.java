@@ -39,6 +39,9 @@ public class Batalha {
             }
             turno.executaAcoes();
             
+            executaEfeitosStatus(time1.getListaPokemons());
+            executaEfeitosStatus(time2.getListaPokemons());
+            
             /*
                 Verifica se algum dos pokémons ficou inabilitado a lutar
             */
@@ -57,8 +60,11 @@ public class Batalha {
         
         DefaultOutput.message(String.format("Vencedor: %s", vencedor));
         DefaultOutput.emptyQueue();
-        DefaultOutput.showMessage("Repetindo:");
-        DefaultOutput.repeat();
+    }
+
+    private void executaEfeitosStatus(List<Pokemon> listaPokemons) {
+        for(Pokemon p:listaPokemons)
+            p.getStatus().aplicaEfeitoPosTurno(p);
     }
 
     private void trocaPokemonSeFainted(Jogador time) {
