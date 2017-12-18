@@ -2,6 +2,7 @@
 package batalha;
 
 import ataques.Ataque;
+import util.DefaultOutput;
 import util.Probabilidade;
 
 public class JogadorMaquina extends Jogador{
@@ -12,7 +13,7 @@ public class JogadorMaquina extends Jogador{
     
     @Override
     public AcaoJogador escolherComando(Jogador adversario){
-        System.out.println("Vez de" + toString() + ": Jogada automatica realizada pelo computador.\n");
+        DefaultOutput.showMessage("Vez de " + toString() + ": Jogada automatica realizada pelo computador.\n");
         return new AcaoUsarAtaque(getProximoPokemon(),adversario,retornaAtaquePokemon(),getId());
     }
     

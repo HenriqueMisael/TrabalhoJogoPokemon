@@ -37,7 +37,7 @@ public class Batalha {
                 case 1: turno = new Turno(time2.escolherComando(time1));break;
                 case 2: turno = new Turno(time1.escolherComando(time2));break;
             }
-            System.out.println("Executando acoes escolhidas pelos jogadores:");
+            
             turno.executaAcoes();
             
             executaEfeitosStatus(time1.getListaPokemons());
