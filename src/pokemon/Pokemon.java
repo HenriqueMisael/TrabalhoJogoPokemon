@@ -148,33 +148,33 @@ public class Pokemon {
     }
     
     public void modifyModifierAccuracy(int amount) {
-        if((getModifierAccuracy()==6) || (getModifierAccuracy()==-6)) return;
     	modifierAccuracy += amount;
+    	modifierAccuracy = Integer.min(Integer.max(modifierAccuracy,-6),6); //Limite de modificaçõe [-6, 6]
     }
 
     public void modifyModifierEvasion(int amount) {
-        if((getModifierEvasion()==6) || (getModifierEvasion()==-6)) return;
     	modifierEvasion += amount;
+    	modifierEvasion = Integer.min(Integer.max(modifierEvasion,-6),6);
     }
 
     public void modifyModifierAtk(int amount) {
-        if((getModifierAtk()==6) || (getModifierAtk()==-6)) return;
     	modifierAtk += amount;
+    	modifierAtk = Integer.min(Integer.max(modifierAtk,-6),6);
     }
 
     public void modifyModifierDef(int amount) {
-        if((getModifierDef()==6) || (getModifierDef()==-6)) return;
     	modifierDef += amount;
+    	modifierDef = Integer.min(Integer.max(modifierDef,-6),6);
     }
 
     public void modifyModifierSpe(int amount) {
-        if((getModifierSpe()==6) || (getModifierSpe()==-6)) return;
     	modifierSpe += amount;
+    	modifierSpe = Integer.min(Integer.max(modifierSpe,-6),6);
     }
 
     public void modifyModifierSpd(int amount) {
-        if((getModifierSpd()==6) || (getModifierSpd()==-6)) return;
     	modifierSpd += amount;
+    	modifierSpd = Integer.min(Integer.max(modifierSpd,-6),6);
     }
     
     @Override
