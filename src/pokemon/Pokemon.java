@@ -148,26 +148,32 @@ public class Pokemon {
     }
     
     public void modifyModifierAccuracy(int amount) {
+        if((getModifierAccuracy()==6) || (getModifierAccuracy()==-6)) return;
     	modifierAccuracy += amount;
     }
 
     public void modifyModifierEvasion(int amount) {
+        if((getModifierEvasion()==6) || (getModifierEvasion()==-6)) return;
     	modifierEvasion += amount;
     }
 
     public void modifyModifierAtk(int amount) {
+        if((getModifierAtk()==6) || (getModifierAtk()==-6)) return;
     	modifierAtk += amount;
     }
 
     public void modifyModifierDef(int amount) {
+        if((getModifierDef()==6) || (getModifierDef()==-6)) return;
     	modifierDef += amount;
     }
 
     public void modifyModifierSpe(int amount) {
+        if((getModifierSpe()==6) || (getModifierSpe()==-6)) return;
     	modifierSpe += amount;
     }
 
     public void modifyModifierSpd(int amount) {
+        if((getModifierSpd()==6) || (getModifierSpd()==-6)) return;
     	modifierSpd += amount;
     }
     
@@ -198,4 +204,6 @@ public class Pokemon {
     public void curaHp(double cura) {
         hpAtual = Double.min(hpAtual+cura,hpMax);
     }
+    
+    
 }
