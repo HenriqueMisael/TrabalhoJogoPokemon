@@ -173,7 +173,7 @@ public class Pokemon {
     
     @Override
     public String toString() {
-        return getEspecie().toString();
+        return String.format("%s(Nv.%d) HP(%.2f/%.2f)", getEspecie().toString(), getLevel(), getHpAtual(), getHpMax());
     }
 
     public Especie getEspecie() {

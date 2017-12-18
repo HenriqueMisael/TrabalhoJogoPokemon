@@ -23,9 +23,12 @@ public class JogadorHumano extends Jogador{
         AcaoJogador acao;
         int acaoEscolhida;
         
-        if(quantidadePokemonsUtilizaveis() > 1)
+        if(quantidadePokemonsUtilizaveis() > 1) {
+            System.out.println("Vez de" + toString() + ":");
             acaoEscolhida = pedeAcaoJogador(adversario);
+        }
         else {
+            System.out.println("Vez de" + toString() + ":");
             DefaultOutput.showMessage(String.format("Apenas %s está disponível para uso, ação escolhida automaticamente: Atacar.", this.getProximoPokemon()));
             acaoEscolhida = 1;
         }
