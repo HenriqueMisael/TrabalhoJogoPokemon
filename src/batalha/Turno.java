@@ -7,7 +7,7 @@ import util.DefaultOutput;
 public class Turno {
 
     private static AcaoJogador acaoJogador1;
-    static AcaoJogador acaoJogador2;
+    private static AcaoJogador acaoJogador2;
     
     public Turno( AcaoJogador acaoJogador1, AcaoJogador acaoJogador2 ) {
         this.setAcaoJogador1(acaoJogador1);

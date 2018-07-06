@@ -42,7 +42,7 @@ public abstract class Jogador {
         int quantidade = 0;
         
         for( Pokemon p : listaPokemons )
-            if(p.getStatus() != pokemon.Status.FAINTED)
+            if(!p.getStatus().contains(pokemon.StatusPrimario.FAINTED))
                 quantidade++;
         
         return quantidade;        

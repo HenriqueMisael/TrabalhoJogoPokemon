@@ -3,7 +3,7 @@ package batalha;
 
 import ataques.Ataque;
 import pokemon.Pokemon;
-import pokemon.Status;
+import pokemon.StatusPrimario;
 import util.DefaultOutput;
 
 import java.util.Scanner;
@@ -22,8 +22,6 @@ public class JogadorHumano extends Jogador{
         
         AcaoJogador acao;
         int acaoEscolhida;
-        
-        DefaultOutput.showMessage("Vez de" + toString() + ":");
         
         if(quantidadePokemonsUtilizaveis() > 1) {
             acaoEscolhida = pedeAcaoJogador(adversario);
@@ -77,7 +75,7 @@ public class JogadorHumano extends Jogador{
         
         opcoes += String.format("\nEscolha o pokémon para selecionar:");
         for(i = 1; i < getListaPokemons().size(); i++) {
-            if( getListaPokemons().get(i).getStatus() != Status.FAINTED ) {
+            if( !getListaPokemons().get(i).getStatus().contains(StatusPrimario.FAINTED)) {
                 opcoes += String.format("\n%d - %s", i, getListaPokemons().get(i).toString());
             }
         }    
@@ -90,13 +88,13 @@ public class JogadorHumano extends Jogador{
             escolhido = 0;
         }
 
-        if(getListaPokemons().get(escolhido).getStatus() == Status.FAINTED) {
+        if(getListaPokemons().get(escolhido).getStatus().contains(StatusPrimario.FAINTED)) {
             int novoEscolhido = -1;
             
             DefaultOutput.showMessage(String.format("Pokémon %s está morto, o próximo vivo será escolhido.",getListaPokemons().get(escolhido)));
             
             for(i = 1; i < getListaPokemons().size(); i++) {
-                if( getListaPokemons().get(i).getStatus() != Status.FAINTED )
+                if( !getListaPokemons().get(i).getStatus().contains(StatusPrimario.FAINTED) )
                     novoEscolhido = i;
             }
             

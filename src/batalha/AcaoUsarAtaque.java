@@ -2,7 +2,7 @@ package batalha;
 
 import ataques.Ataque;
 import pokemon.Pokemon;
-import pokemon.Status;
+import pokemon.StatusPrimario;
 import util.DefaultOutput;
 
 public class AcaoUsarAtaque implements AcaoJogador {
@@ -27,7 +27,7 @@ public class AcaoUsarAtaque implements AcaoJogador {
     @Override
     public AcaoJogador executa() {
        
-        if(atacante.getStatus()==Status.FAINTED) {
+        if(atacante.getStatus().contains(StatusPrimario.FAINTED)) {
             DefaultOutput.message("(" + atacante.getEspecie() + " morreu e não pode atacar.)");
         }else{     
             ataque.efeito(atacante, adversario, getPlayer());            

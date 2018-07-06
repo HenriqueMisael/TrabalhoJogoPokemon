@@ -3,7 +3,7 @@ package batalha;
 import java.util.List;
 
 import pokemon.Pokemon;
-import pokemon.Status;
+import pokemon.StatusPrimario;
 import util.DefaultOutput;
 
 public class Batalha {
@@ -70,13 +70,13 @@ public class Batalha {
 
     private void trocaPokemonSeFainted(Jogador time) {
         
-        if(time.getProximoPokemon().getStatus() == Status.FAINTED) {
+        if(time.getProximoPokemon().getStatus().contains(StatusPrimario.FAINTED)) {
             int i = 0;
             List<Pokemon> lista = time.getListaPokemons();
             
             do {
                 i++;
-            }while(i < lista.size() && lista.get(i).getStatus() == Status.FAINTED);
+            }while(i < lista.size() && lista.get(i).getStatus().contains(StatusPrimario.FAINTED));
             
             if(i < lista.size())
                 time.trocarPokemon(lista.get(i));

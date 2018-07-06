@@ -9,15 +9,6 @@ import util.Probabilidade;
 
 public class AtaqueStatus extends Ataque {
 
-    public static final int INFLIGE_STATUS_BURN      = 1;
-    public static final int INFLIGE_STATUS_FROZEN    = 2;
-    public static final int INFLIGE_STATUS_PARALYSIS = 3;
-    public static final int INFLIGE_STATUS_POISON    = 4;
-    public static final int INFLIGE_STATUS_SLEEP     = 5;
-    public static final int INFLIGE_STATUS_FAINTED   = 6;
-    public static final int INFLIGE_STATUS_CONFUSION = 7;
-    public static final int INFLIGE_STATUS_FLINCH    = 8;
-    
     private Status status;
 	private int chance;	
 	

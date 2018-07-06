@@ -21,10 +21,8 @@ public class Pokemon {
     private int modifierDef;
     private int modifierSpe;
     private int modifierSpd;
-    private boolean confusion;
-    private boolean flinch;
     
-    private Status status;    
+    private StatusController status;    
     private Ataque ataque1, ataque2, ataque3, ataque4;
 
     public Pokemon(Especie especie, int level, Ataque ataque1, Ataque ataque2, Ataque ataque3, Ataque ataque4) {
@@ -43,7 +41,7 @@ public class Pokemon {
         this.modifierSpe = 0;
         this.modifierSpd = 0;
         
-        this.status = Status.OK;
+        this.status = new StatusController();
     }
     
     private void calculaAtributos() {
@@ -55,7 +53,7 @@ public class Pokemon {
         speed = especie.calculaSpeed(level);
     }
 
-    public Status getStatus() {
+    public StatusController getStatus() {
         return status;
     }
     
@@ -65,22 +63,6 @@ public class Pokemon {
 
     public void setHpAtual(double hpAtual) {
         this.hpAtual = hpAtual;
-    }
-
-    public boolean isConfusion() {
-        return confusion;
-    }
-
-    public void setConfusion(boolean confusion) {
-        this.confusion = confusion;
-    }
-
-    public boolean isFlinch() {
-        return flinch;
-    }
-
-    public void setFlinch(boolean flinch) {
-        this.flinch = flinch;
     }
 
     public int getLevel() {
@@ -179,7 +161,7 @@ public class Pokemon {
     
     @Override
     public String toString() {
-        return String.format("%s(Nv.%d) HP(%.2f/%.2f)", getEspecie().toString(), getLevel(), getHpAtual(), getHpMax());
+        return String.format("%s", getEspecie());
     }
 
     public Especie getEspecie() {
@@ -190,7 +172,7 @@ public class Pokemon {
         hpAtual = Double.max(hpAtual-dano,0);
         
         if(hpAtual == 0) {
-            setStatus(Status.FAINTED);
+            setStatus(StatusPrimario.FAINTED);
             DefaultOutput.message(String.format("%s sofreu %.2f de dano e morreu.", this, dano));
         }else {
         	DefaultOutput.message(String.format("%s sofreu %.2f de dano.", this, dano));
@@ -198,12 +180,22 @@ public class Pokemon {
     }
 
     public void setStatus(Status status) {
-        this.status = status;        
+        if(StatusPrimario.class.isInstance(status)) {
+            setStatus((StatusPrimario) status);
+        }else if(StatusSecundario.class.isInstance(status)) {
+            setStatus((StatusSecundario) status);
+        }
+    }
+    
+    private void setStatus(StatusPrimario status) {
+        this.status.setStatusPrimario(status);
+    }
+
+    private void setStatus(StatusSecundario status) {
+        this.status.addStatusSecundario(status);
     }
 
     public void curaHp(double cura) {
         hpAtual = Double.min(hpAtual+cura,hpMax);
     }
-    
-    
 }

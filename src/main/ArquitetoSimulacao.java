@@ -9,6 +9,8 @@ import batalha.JogadorMaquina;
 import pokemon.Especie;
 import pokemon.Pokemon;
 import pokemon.Status;
+import pokemon.StatusPrimario;
+import pokemon.StatusSecundario;
 
 public class ArquitetoSimulacao {
 
@@ -103,12 +105,27 @@ public class ArquitetoSimulacao {
                                             Integer.parseInt(modificadores[0]),   
                                             Integer.parseInt(modificadores[1]));
         }else if(tipo.equals("status")) {
+            
+            Status status;
+            
+            try {
+                status = StatusPrimario.valueOf(modificadores[0].toUpperCase());
+            }catch (Exception e){
+                try {
+                    status = StatusSecundario.valueOf(modificadores[0].toUpperCase());
+                }catch (Exception x){
+                    System.err.printf("Tipo de status não previsto",
+                    x.getMessage());
+                    status = null;
+                }
+            }
+            
             ataque = new AtaqueStatus(id, tabelaAtaques.getNome(id),          
                                           tabelaAtaques.getPP(id),            
                                           tabelaAtaques.getPower(id),         
                                           tabelaAtaques.getAccuracy(id),      
                                           tabelaAtaques.getType(id),          
-                                          Status.valueOf(modificadores[0].toUpperCase()), 
+                                          status, 
                                           Integer.parseInt(modificadores[1]));
         }else {
             ataque = new Ataque(id, tabelaAtaques.getNome(id),          

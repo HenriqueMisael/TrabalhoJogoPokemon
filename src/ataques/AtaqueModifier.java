@@ -3,7 +3,6 @@ package ataques;
 import batalha.Jogador;
 import pokemon.Pokemon;
 import pokemon.Tipo;
-import util.DefaultOutput;
 
 public class AtaqueModifier extends Ataque {
 

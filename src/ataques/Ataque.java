@@ -176,7 +176,7 @@ public class Ataque {
 
     @Override
     public String toString() {
-        return "[" + id + "] " + nome;
+        return nome.trim();
     }
 
     public AcaoJogador getRetorno() {
