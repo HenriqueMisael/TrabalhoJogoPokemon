@@ -2,6 +2,7 @@
 package pokemon;
 
 import ataques.Ataque;
+import main.dto.PokemonDto;
 import util.DefaultOutput;
 
 public class Pokemon {
@@ -21,9 +22,12 @@ public class Pokemon {
     private int modifierDef;
     private int modifierSpe;
     private int modifierSpd;
-    
-    private StatusController status;    
+    private StatusController status;
     private Ataque ataque1, ataque2, ataque3, ataque4;
+
+    public static Pokemon fromDto(PokemonDto dto) {
+        return new Pokemon(Especie.get(dto.especie), dto.nivel, Ataque.get(dto.ataqueUm), Ataque.get(dto.ataqueDois), Ataque.get(dto.ataqueTres), Ataque.get(dto.ataqueQuatro));
+    }
 
     public Pokemon(Especie especie, int level, Ataque ataque1, Ataque ataque2, Ataque ataque3, Ataque ataque4) {
         this.especie = especie;
@@ -32,7 +36,7 @@ public class Pokemon {
         this.ataque2 = ataque2;
         this.ataque3 = ataque3;
         this.ataque4 = ataque4;
-        
+
         calculaAtributos();
         this.modifierAccuracy = 0;
         this.modifierEvasion = 0;
@@ -40,10 +44,10 @@ public class Pokemon {
         this.modifierDef = 0;
         this.modifierSpe = 0;
         this.modifierSpd = 0;
-        
+
         this.status = new StatusController();
     }
-    
+
     private void calculaAtributos() {
         hpMax = especie.calculaHpMax(level);
         hpAtual = hpMax;
@@ -56,7 +60,7 @@ public class Pokemon {
     public StatusController getStatus() {
         return status;
     }
-    
+
     public double getHpAtual() {
         return hpAtual;
     }
@@ -104,7 +108,7 @@ public class Pokemon {
     public Ataque getAtaque4() {
         return ataque4;
     }
-    
+
     public int getModifierAccuracy() {
         return modifierAccuracy;
     }
@@ -128,37 +132,37 @@ public class Pokemon {
     public int getModifierSpd() {
         return modifierSpd;
     }
-    
+
     public void modifyModifierAccuracy(int amount) {
-    	modifierAccuracy += amount;
-    	modifierAccuracy = Integer.min(Integer.max(modifierAccuracy,-6),6); //Limite de modificaçõe [-6, 6]
+        modifierAccuracy += amount;
+        modifierAccuracy = Integer.min(Integer.max(modifierAccuracy, -6), 6); //Limite de modificaï¿½ï¿½e [-6, 6]
     }
 
     public void modifyModifierEvasion(int amount) {
-    	modifierEvasion += amount;
-    	modifierEvasion = Integer.min(Integer.max(modifierEvasion,-6),6);
+        modifierEvasion += amount;
+        modifierEvasion = Integer.min(Integer.max(modifierEvasion, -6), 6);
     }
 
     public void modifyModifierAtk(int amount) {
-    	modifierAtk += amount;
-    	modifierAtk = Integer.min(Integer.max(modifierAtk,-6),6);
+        modifierAtk += amount;
+        modifierAtk = Integer.min(Integer.max(modifierAtk, -6), 6);
     }
 
     public void modifyModifierDef(int amount) {
-    	modifierDef += amount;
-    	modifierDef = Integer.min(Integer.max(modifierDef,-6),6);
+        modifierDef += amount;
+        modifierDef = Integer.min(Integer.max(modifierDef, -6), 6);
     }
 
     public void modifyModifierSpe(int amount) {
-    	modifierSpe += amount;
-    	modifierSpe = Integer.min(Integer.max(modifierSpe,-6),6);
+        modifierSpe += amount;
+        modifierSpe = Integer.min(Integer.max(modifierSpe, -6), 6);
     }
 
     public void modifyModifierSpd(int amount) {
-    	modifierSpd += amount;
-    	modifierSpd = Integer.min(Integer.max(modifierSpd,-6),6);
+        modifierSpd += amount;
+        modifierSpd = Integer.min(Integer.max(modifierSpd, -6), 6);
     }
-    
+
     @Override
     public String toString() {
         return String.format("%s", getEspecie());
@@ -169,24 +173,24 @@ public class Pokemon {
     }
 
     public void reduzHp(double dano) {
-        hpAtual = Double.max(hpAtual-dano,0);
-        
-        if(hpAtual == 0) {
+        hpAtual = Double.max(hpAtual - dano, 0);
+
+        if (hpAtual == 0) {
             setStatus(StatusPrimario.FAINTED);
             DefaultOutput.message(String.format("%s sofreu %.2f de dano e morreu.", this, dano));
-        }else {
-        	DefaultOutput.message(String.format("%s sofreu %.2f de dano.", this, dano));
+        } else {
+            DefaultOutput.message(String.format("%s sofreu %.2f de dano.", this, dano));
         }
     }
 
     public void setStatus(Status status) {
-        if(StatusPrimario.class.isInstance(status)) {
+        if (StatusPrimario.class.isInstance(status)) {
             setStatus((StatusPrimario) status);
-        }else if(StatusSecundario.class.isInstance(status)) {
+        } else if (StatusSecundario.class.isInstance(status)) {
             setStatus((StatusSecundario) status);
         }
     }
-    
+
     private void setStatus(StatusPrimario status) {
         this.status.setStatusPrimario(status);
     }
@@ -196,6 +200,6 @@ public class Pokemon {
     }
 
     public void curaHp(double cura) {
-        hpAtual = Double.min(hpAtual+cura,hpMax);
+        hpAtual = Double.min(hpAtual + cura, hpMax);
     }
 }

@@ -1,30 +1,34 @@
 package main;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 import batalha.Batalha;
 import batalha.Jogador;
+import main.dto.SimulacaoDto;
+import main.dto.TimeDto;
+import pokemon.Pokemon;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TrabalhoJavaPokemon {
 
     public static void main(String[] args) {
-    	
-        Queue<Integer> argumentos = new LinkedList<Integer>();
+
         Batalha batalha;
-        Jogador p1, p2;
-        
-        for( String a:args ) {
-            argumentos.add(Integer.parseInt(a));
-        }
-       
-        p1 = ArquitetoSimulacao.retornaJogadorConformeTipo( argumentos.remove() );
-        ArquitetoSimulacao.montaTimePokemon(p1, argumentos, argumentos.remove());
-        
-        p2 = ArquitetoSimulacao.retornaJogadorConformeTipo( argumentos.remove() );
-        ArquitetoSimulacao.montaTimePokemon(p2, argumentos, argumentos.remove());
-        
-        batalha = new Batalha( p1, p2 );
+
+        SimulacaoDto simulacaoDto = SimulacaoDto.get(new LinkedList<>(Arrays.asList(args)));
+
+        batalha = new Batalha(getJogador(simulacaoDto.timeUm, 1), getJogador(simulacaoDto.timeDois, 2));
         batalha.start();
+    }
+
+    private static Jogador getJogador(TimeDto timeUm, int i) {
+        Jogador p1;
+        p1 = timeUm.tipoJogador.get(i);
+        timeUm.pokemons.forEach(dto -> p1.adicionarPokemon(Pokemon.fromDto(dto)));
+        return p1;
     }
 }
