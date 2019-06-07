@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public enum TipoJogador {
     MAQUINA(JogadorMaquina::new), HUMANO(JogadorHumano::new);
-    Function<Integer, Jogador> construtor;
+    private final Function<Integer, Jogador> construtor;
 
     TipoJogador(Function<Integer, Jogador> construtor) {
         this.construtor = construtor;

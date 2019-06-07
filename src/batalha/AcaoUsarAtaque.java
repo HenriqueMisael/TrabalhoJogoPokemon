@@ -7,10 +7,10 @@ import util.DefaultOutput;
 
 public class AcaoUsarAtaque implements AcaoJogador {
 
-    private Jogador adversario;
-    private Pokemon atacante;
-    private Ataque ataque;
-    private int player;
+    private final Jogador adversario;
+    private final Pokemon atacante;
+    private final Ataque ataque;
+    private final int player;
     
     public AcaoUsarAtaque(Pokemon atacante, Jogador adversario, Ataque ataque, int player) {
         this.atacante = atacante;
@@ -28,7 +28,7 @@ public class AcaoUsarAtaque implements AcaoJogador {
     public AcaoJogador executa() {
        
         if(atacante.getStatus().contains(StatusPrimario.FAINTED)) {
-            DefaultOutput.message("(" + atacante.getEspecie() + " morreu e n„o pode atacar.)");
+            DefaultOutput.message("(" + atacante.getEspecie() + " morreu e n√£o pode atacar.)");
         }else{     
             ataque.efeito(atacante, adversario, getPlayer());            
         }

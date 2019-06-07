@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class JogadorHumano extends Jogador{
     
     private int opcao = 0;
-    private Scanner entrada = new Scanner(System.in);
+    private final Scanner entrada = new Scanner(System.in);
     
     public JogadorHumano(int id) {
         super(id);
@@ -27,7 +27,7 @@ public class JogadorHumano extends Jogador{
             acaoEscolhida = pedeAcaoJogador(adversario);
         }
         else {
-            DefaultOutput.showMessage(String.format("Apenas %s está disponível para uso, ação escolhida automaticamente: Atacar.", this.getProximoPokemon()));
+            DefaultOutput.showMessage(String.format("Apenas %s estÃ¡ disponÃ­vel para uso, aÃ§Ã£o escolhida automaticamente: Atacar.", this.getProximoPokemon()));
             acaoEscolhida = 1;
         }
         
@@ -64,34 +64,35 @@ public class JogadorHumano extends Jogador{
         case 2: return getProximoPokemon().getAtaque2();
         case 3: return getProximoPokemon().getAtaque3();
         case 4: return getProximoPokemon().getAtaque4();
-        default: System.out.printf("Ataque escolhido invalido"); return getProximoPokemon().getAtaque1();
+        default:
+            System.out.print("Ataque escolhido invalido"); return getProximoPokemon().getAtaque1();
         }      
     }
 
     private Pokemon escolheNovoPokemon() {
         
-        String opcoes = "";
+        StringBuilder opcoes = new StringBuilder();
         int i, escolhido;
-        
-        opcoes += String.format("\nEscolha o pokémon para selecionar:");
+
+        opcoes.append("\nEscolha o pokÃ©mon para selecionar:");
         for(i = 1; i < getListaPokemons().size(); i++) {
             if( !getListaPokemons().get(i).getStatus().contains(StatusPrimario.FAINTED)) {
-                opcoes += String.format("\n%d - %s", i, getListaPokemons().get(i).toString());
+                opcoes.append(String.format("\n%d - %s", i, getListaPokemons().get(i).toString()));
             }
         }    
         
-        DefaultOutput.showMessage(opcoes);
+        DefaultOutput.showMessage(opcoes.toString());
         escolhido = entrada.nextInt();
         
         if(escolhido > getListaPokemons().size()) {
-            DefaultOutput.showMessage("Número de pokémon inválido");
+            DefaultOutput.showMessage("Nï¿½mero de pokÃ©mon invï¿½lido");
             escolhido = 0;
         }
 
         if(getListaPokemons().get(escolhido).getStatus().contains(StatusPrimario.FAINTED)) {
             int novoEscolhido = -1;
-            
-            DefaultOutput.showMessage(String.format("Pokémon %s está morto, o próximo vivo será escolhido.",getListaPokemons().get(escolhido)));
+
+            DefaultOutput.showMessage(String.format("pokÃ©mon %s estÃ¡ morto, o prï¿½ximo vivo serï¿½ escolhido.", getListaPokemons().get(escolhido)));
             
             for(i = 1; i < getListaPokemons().size(); i++) {
                 if( !getListaPokemons().get(i).getStatus().contains(StatusPrimario.FAINTED) )
@@ -108,8 +109,8 @@ public class JogadorHumano extends Jogador{
     }
 
     private int pedeAcaoJogador(Jogador adversario) {
-        
-        DefaultOutput.showMessage("\nAdversario " + adversario.toString() + " com o pokémon " + adversario.getProximoPokemon().toString() + " posicionado. O que deseja fazer?\n1-Atacar com " + getProximoPokemon().toString() + "\n2-Trocar pokémon ativo");
+
+        DefaultOutput.showMessage("\nAdversario " + adversario.toString() + " com o pokÃ©mon " + adversario.getProximoPokemon().toString() + " posicionado. O que deseja fazer?\n1-Atacar com " + getProximoPokemon().toString() + "\n2-Trocar pokÃ©mon ativo");
         opcao = entrada.nextInt();
         if(opcao==1) return 1;
         return 2;

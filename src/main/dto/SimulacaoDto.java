@@ -14,7 +14,7 @@ public class SimulacaoDto {
     public final TimeDto timeUm;
     public final TimeDto timeDois;
 
-    public SimulacaoDto(TimeDto timeUm, TimeDto timeDois) {
+    private SimulacaoDto(TimeDto timeUm, TimeDto timeDois) {
         this.timeUm = timeUm;
         this.timeDois = timeDois;
     }

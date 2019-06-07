@@ -5,8 +5,8 @@ import ataques.AttackHit;
 
 public interface Status {
     
-    public abstract void aplicaEfeitoPosTurno(Pokemon afetado);
-    public abstract void aplicaEfeitoDano(AttackDamage dano);
-    public abstract void aplicaEfeitoAcerto(AttackHit acerto);
+    void aplicaEfeitoPosTurno(Pokemon afetado);
+    void aplicaEfeitoDano(AttackDamage dano);
+    void aplicaEfeitoAcerto(AttackHit acerto);
     
 }

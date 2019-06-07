@@ -4,8 +4,8 @@ import pokemon.Pokemon;
 
 public class AcaoTrocarPokemon implements AcaoJogador {
 
-    private Jogador agente;
-    private Pokemon novoPokemon;
+    private final Jogador agente;
+    private final Pokemon novoPokemon;
     
     public AcaoTrocarPokemon(Jogador agente, Pokemon novoPokemon) {
         this.agente = agente;
@@ -14,7 +14,7 @@ public class AcaoTrocarPokemon implements AcaoJogador {
 
     @Override
     public String message() {
-        return agente.toString() + " trocou o pokémon " + novoPokemon.getEspecie().toString() + " para o início da fila.";
+        return agente.toString() + " trocou o pokÃ©mon " + novoPokemon.getEspecie().toString() + " para o inÃ­cio da fila.";
     }
     
     @Override

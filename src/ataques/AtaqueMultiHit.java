@@ -6,8 +6,8 @@ import util.Probabilidade;
 
 public class AtaqueMultiHit extends Ataque {
 
-	private int min;
-	private int max;
+	private final int min;
+	private final int max;
 	
 	public AtaqueMultiHit(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo, int min,
             int max) {
@@ -29,7 +29,7 @@ public class AtaqueMultiHit extends Ataque {
             modificadorLevel = atacante.getLevel();
             
             /*
-                Se o ataque for crítico, o modificador de nível é dobrado
+                Se o ataque for crï¿½tico, o modificador de nÃ­vel ï¿½ dobrado
             */
             if(calculoCritico(atacante.getSpeed()))
                 modificadorLevel *= 2;

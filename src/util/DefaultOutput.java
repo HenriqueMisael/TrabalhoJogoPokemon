@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 public class DefaultOutput {
 
-    private static LinkedList<String> pendingMessages = new LinkedList<String>();
-    private static LinkedList<String> sendedMessages = new LinkedList<String>();
+    private static final LinkedList<String> pendingMessages = new LinkedList<>();
+    private static final LinkedList<String> sendedMessages = new LinkedList<>();
     
     public static void message(String newMessage) {
         pendingMessages.add(newMessage);

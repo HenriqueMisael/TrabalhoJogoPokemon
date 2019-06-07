@@ -4,15 +4,16 @@ import main.TabelaDeEspecies;
 
 public class Especie {
 
-    private static TabelaDeEspecies tabelaEspecies = new TabelaDeEspecies("Tabela_Especies.txt");
-    private int id;
-    private String nome;
-    private double baseHp;
-    private double baseAttack;
-    private double baseDefense;
-    private double baseSpecial;
-    private double baseSpeed;
-    private Tipo tipo1, tipo2;
+    private static final TabelaDeEspecies tabelaEspecies = new TabelaDeEspecies("Tabela_Especies.txt");
+    private final int id;
+    private final String nome;
+    private final double baseHp;
+    private final double baseAttack;
+    private final double baseDefense;
+    private final double baseSpecial;
+    private final double baseSpeed;
+    private final Tipo tipo1;
+    private final Tipo tipo2;
 
     static Especie get(int id) {
         return new Especie(id, tabelaEspecies.getEspecie(id),

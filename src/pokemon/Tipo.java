@@ -19,10 +19,10 @@ public enum Tipo {
     ROCK(     "Rock"    , 1, 0.5,   2,   1, 0.5,   1,   2,   1,   2,   1,   1,   1,   1,   2,   1),
     WATER(    "Water"   , 1,   1,   1,   1,   2,   2,   1,   1,   2, 0.5, 0.5,   1,   1,   1, 0.5);
     
-    private Tipo(String descricao, double bonusNormal, double bonusFighting, double bonusFlying, double bonusPoison,
-            double bonusGround, double bonusRock, double bonusBug, double bonusGhost, double bonusFire,
-            double bonusWater, double bonusGrass, double bonusElectric, double bonusPsychic, double bonusIce,
-            double bonusDragon) {
+    Tipo(String descricao, double bonusNormal, double bonusFighting, double bonusFlying, double bonusPoison,
+         double bonusGround, double bonusRock, double bonusBug, double bonusGhost, double bonusFire,
+         double bonusWater, double bonusGrass, double bonusElectric, double bonusPsychic, double bonusIce,
+         double bonusDragon) {
         this.descricao = descricao;
         this.bonusNormal = bonusNormal;
         this.bonusFighting = bonusFighting;
@@ -41,9 +41,22 @@ public enum Tipo {
         this.bonusDragon = bonusDragon;
     }
 
-    private String descricao;
-    private double bonusNormal, bonusFighting, bonusFlying, bonusPoison, bonusGround, bonusRock, bonusBug, bonusGhost;
-    private double bonusFire, bonusWater, bonusGrass, bonusElectric, bonusPsychic, bonusIce, bonusDragon;
+    private final String descricao;
+    private final double bonusNormal;
+    private final double bonusFighting;
+    private final double bonusFlying;
+    private final double bonusPoison;
+    private final double bonusGround;
+    private final double bonusRock;
+    private final double bonusBug;
+    private final double bonusGhost;
+    private final double bonusFire;
+    private final double bonusWater;
+    private final double bonusGrass;
+    private final double bonusElectric;
+    private final double bonusPsychic;
+    private final double bonusIce;
+    private final double bonusDragon;
     
     public double calculaBonus(Tipo obj) {
         

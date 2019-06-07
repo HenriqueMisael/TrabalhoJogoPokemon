@@ -8,8 +8,8 @@ import util.DefaultOutput;
 public class Pokemon {
 
     //ATRIBUTOS
-    private Especie especie;
-    private int level;
+    private final Especie especie;
+    private final int level;
     private double hpAtual;
     private double hpMax;
     private double attack;
@@ -22,14 +22,17 @@ public class Pokemon {
     private int modifierDef;
     private int modifierSpe;
     private int modifierSpd;
-    private StatusController status;
-    private Ataque ataque1, ataque2, ataque3, ataque4;
+    private final StatusController status;
+    private final Ataque ataque1;
+    private final Ataque ataque2;
+    private final Ataque ataque3;
+    private final Ataque ataque4;
 
     public static Pokemon fromDto(PokemonDto dto) {
         return new Pokemon(Especie.get(dto.especie), dto.nivel, Ataque.get(dto.ataqueUm), Ataque.get(dto.ataqueDois), Ataque.get(dto.ataqueTres), Ataque.get(dto.ataqueQuatro));
     }
 
-    public Pokemon(Especie especie, int level, Ataque ataque1, Ataque ataque2, Ataque ataque3, Ataque ataque4) {
+    private Pokemon(Especie especie, int level, Ataque ataque1, Ataque ataque2, Ataque ataque3, Ataque ataque4) {
         this.especie = especie;
         this.level = level;
         this.ataque1 = ataque1;
@@ -184,9 +187,9 @@ public class Pokemon {
     }
 
     public void setStatus(Status status) {
-        if (StatusPrimario.class.isInstance(status)) {
+        if (status instanceof StatusPrimario) {
             setStatus((StatusPrimario) status);
-        } else if (StatusSecundario.class.isInstance(status)) {
+        } else if (status instanceof StatusSecundario) {
             setStatus((StatusSecundario) status);
         }
     }

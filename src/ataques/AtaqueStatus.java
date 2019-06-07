@@ -9,11 +9,11 @@ import util.Probabilidade;
 
 public class AtaqueStatus extends Ataque {
 
-    private Status status;
-	private int chance;	
-	
-	public AtaqueStatus(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo,
-            Status status, int chance) {
+    private final Status status;
+	private final int chance;
+
+    AtaqueStatus(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo,
+                 Status status, int chance) {
         super(id, nome, maxPowerPoints, power, accuracy, tipo);
         this.status = status;
         this.chance = chance;
@@ -25,8 +25,8 @@ public class AtaqueStatus extends Ataque {
         Pokemon atacado = adversario.getProximoPokemon();
         
         super.efeito(atacante, adversario, player);
-	    
-	    if(Probabilidade.calcula(new Double(chance))) {
+
+        if (Probabilidade.calcula((double) chance)) {
 	        atacado.setStatus(status);
 	        DefaultOutput.message(String.format("%s infligiu %s em %s.", atacante, status, atacado));
 	    }

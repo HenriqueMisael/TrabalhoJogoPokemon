@@ -7,11 +7,11 @@ import util.DefaultOutput;
 
 public class AtaqueHp extends Ataque {
 
-    public static final int CURA_CONFORME_DANO = 1;
-    public static final int CURA_CONFORME_VIDA = 2;
+    private static final int CURA_CONFORME_DANO = 1;
+    private static final int CURA_CONFORME_VIDA = 2;
     
-	private int valor;
-	private double porcentagem;
+	private final int valor;
+	private final double porcentagem;
 	
 	public AtaqueHp(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo, String tipoRecuperacao,
             double porcentagem) {
@@ -41,7 +41,7 @@ public class AtaqueHp extends Ataque {
             modificadorLevel = atacante.getLevel();
             
             /*
-                Se o ataque for crítico, o modificador de nível é dobrado
+                Se o ataque for crÃ­tico, o modificador de nÃ­vel ï¿½ dobrado
             */
             if(calculoCritico(atacante.getSpeed()))
                 modificadorLevel *= 2;

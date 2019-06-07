@@ -9,17 +9,17 @@ import util.Probabilidade;
 
 public class Ataque {
 
-    private static TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");
-    private int id;
-    private String nome;
-    private double maxPowerPoints;
+    private static final TabelaDeAtaques tabelaAtaques = new TabelaDeAtaques("Tabela_Ataques.txt");
+    private final int id;
+    private final String nome;
+    private final double maxPowerPoints;
     private double currentPowerPoints;
-    private double power;
-    private double accuracy;
-    private Tipo tipo;
-    protected AcaoJogador retorno;
+    private final double power;
+    private final double accuracy;
+    private final Tipo tipo;
+    AcaoJogador retorno;
 
-    public Ataque(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo) {
+    Ataque(int id, String nome, double maxPowerPoints, double power, double accuracy, Tipo tipo) {
         super();
         this.id = id;
         this.nome = nome;
@@ -43,73 +43,80 @@ public class Ataque {
         modificadores = tabelaAtaques.getParametros(id);
         tipo = tabelaAtaques.getClasse(id);
 
-        if (tipo.equals("charge")) {
-            ataque = new AtaqueCharge(id, tabelaAtaques.getNome(id),
-                    tabelaAtaques.getPP(id),
-                    tabelaAtaques.getPower(id),
-                    tabelaAtaques.getAccuracy(id),
-                    tabelaAtaques.getType(id));
-        } else if (tipo.equals("fixo")) {
-            ataque = new AtaqueFixo(id, tabelaAtaques.getNome(id),
-                    tabelaAtaques.getPP(id),
-                    tabelaAtaques.getPower(id),
-                    tabelaAtaques.getAccuracy(id),
-                    tabelaAtaques.getType(id),
-                    Integer.parseInt(modificadores[0]));
-        } else if (tipo.equals("hp")) {
-            ataque = new AtaqueHp(id, tabelaAtaques.getNome(id),
-                    tabelaAtaques.getPP(id),
-                    tabelaAtaques.getPower(id),
-                    tabelaAtaques.getAccuracy(id),
-                    tabelaAtaques.getType(id),
-                    modificadores[0],
-                    Double.parseDouble(modificadores[1]));
-        } else if (tipo.equals("modifier")) {
-            ataque = new AtaqueModifier(id, tabelaAtaques.getNome(id),
-                    tabelaAtaques.getPP(id),
-                    tabelaAtaques.getPower(id),
-                    tabelaAtaques.getAccuracy(id),
-                    tabelaAtaques.getType(id),
-                    modificadores[0],
-                    Integer.parseInt(modificadores[1]),
-                    Integer.parseInt(modificadores[2]));
-        } else if (tipo.equals("multihit")) {
-            ataque = new AtaqueMultiHit(id, tabelaAtaques.getNome(id),
-                    tabelaAtaques.getPP(id),
-                    tabelaAtaques.getPower(id),
-                    tabelaAtaques.getAccuracy(id),
-                    tabelaAtaques.getType(id),
-                    Integer.parseInt(modificadores[0]),
-                    Integer.parseInt(modificadores[1]));
-        } else if (tipo.equals("status")) {
+        switch (tipo) {
+            case "charge":
+                ataque = new AtaqueCharge(id, tabelaAtaques.getNome(id),
+                        tabelaAtaques.getPP(id),
+                        tabelaAtaques.getPower(id),
+                        tabelaAtaques.getAccuracy(id),
+                        tabelaAtaques.getType(id));
+                break;
+            case "fixo":
+                ataque = new AtaqueFixo(id, tabelaAtaques.getNome(id),
+                        tabelaAtaques.getPP(id),
+                        tabelaAtaques.getPower(id),
+                        tabelaAtaques.getAccuracy(id),
+                        tabelaAtaques.getType(id),
+                        Integer.parseInt(modificadores[0]));
+                break;
+            case "hp":
+                ataque = new AtaqueHp(id, tabelaAtaques.getNome(id),
+                        tabelaAtaques.getPP(id),
+                        tabelaAtaques.getPower(id),
+                        tabelaAtaques.getAccuracy(id),
+                        tabelaAtaques.getType(id),
+                        modificadores[0],
+                        Double.parseDouble(modificadores[1]));
+                break;
+            case "modifier":
+                ataque = new AtaqueModifier(id, tabelaAtaques.getNome(id),
+                        tabelaAtaques.getPP(id),
+                        tabelaAtaques.getPower(id),
+                        tabelaAtaques.getAccuracy(id),
+                        tabelaAtaques.getType(id),
+                        modificadores[0],
+                        Integer.parseInt(modificadores[1]),
+                        Integer.parseInt(modificadores[2]));
+                break;
+            case "multihit":
+                ataque = new AtaqueMultiHit(id, tabelaAtaques.getNome(id),
+                        tabelaAtaques.getPP(id),
+                        tabelaAtaques.getPower(id),
+                        tabelaAtaques.getAccuracy(id),
+                        tabelaAtaques.getType(id),
+                        Integer.parseInt(modificadores[0]),
+                        Integer.parseInt(modificadores[1]));
+                break;
+            case "status":
 
-            Status status;
+                Status status;
 
-            try {
-                status = StatusPrimario.valueOf(modificadores[0].toUpperCase());
-            } catch (Exception e) {
                 try {
-                    status = StatusSecundario.valueOf(modificadores[0].toUpperCase());
-                } catch (Exception x) {
-                    System.err.printf("Tipo de status não previsto",
-                            x.getMessage());
-                    status = null;
+                    status = StatusPrimario.valueOf(modificadores[0].toUpperCase());
+                } catch (Exception e) {
+                    try {
+                        status = StatusSecundario.valueOf(modificadores[0].toUpperCase());
+                    } catch (Exception x) {
+                        System.err.printf("Tipo de status não previsto: %s", modificadores[0]);
+                        status = null;
+                    }
                 }
-            }
 
-            ataque = new AtaqueStatus(id, tabelaAtaques.getNome(id),
-                    tabelaAtaques.getPP(id),
-                    tabelaAtaques.getPower(id),
-                    tabelaAtaques.getAccuracy(id),
-                    tabelaAtaques.getType(id),
-                    status,
-                    Integer.parseInt(modificadores[1]));
-        } else {
-            ataque = new Ataque(id, tabelaAtaques.getNome(id),
-                    tabelaAtaques.getPP(id),
-                    tabelaAtaques.getPower(id),
-                    tabelaAtaques.getAccuracy(id),
-                    tabelaAtaques.getType(id));
+                ataque = new AtaqueStatus(id, tabelaAtaques.getNome(id),
+                        tabelaAtaques.getPP(id),
+                        tabelaAtaques.getPower(id),
+                        tabelaAtaques.getAccuracy(id),
+                        tabelaAtaques.getType(id),
+                        status,
+                        Integer.parseInt(modificadores[1]));
+                break;
+            default:
+                ataque = new Ataque(id, tabelaAtaques.getNome(id),
+                        tabelaAtaques.getPP(id),
+                        tabelaAtaques.getPower(id),
+                        tabelaAtaques.getAccuracy(id),
+                        tabelaAtaques.getType(id));
+                break;
         }
 
         return ataque;
@@ -127,7 +134,7 @@ public class Ataque {
                 modificadorLevel = atacante.getLevel();
           	    
                 /*
-                    Se o ataque for cr�tico, o modificador de n�vel � dobrado
+                    Se o ataque for crítico, o modificador de nível � dobrado
                 */
                 if (calculoCritico(atacante.getSpeed()))
                     modificadorLevel *= 2;
@@ -138,35 +145,35 @@ public class Ataque {
         }
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public String getNome() {
+    String getNome() {
         return nome;
     }
 
-    protected double getPower() {
+    double getPower() {
         return power;
     }
 
-    protected double getAccuracy() {
+    double getAccuracy() {
         return accuracy;
     }
 
-    protected Tipo getTipo() {
+    Tipo getTipo() {
         return tipo;
     }
 
-    public void restauraAtaques() {
+    private void restauraAtaques() {
         currentPowerPoints = maxPowerPoints;
     }
 
-    protected void reduzPP() {
+    void reduzPP() {
         currentPowerPoints--;
     }
 
-    protected boolean calculoAcerto(Pokemon atacante, Pokemon atacado) {
+    boolean calculoAcerto(Pokemon atacante, Pokemon atacado) {
 
         AttackHit hit = new AttackHit();
 
@@ -179,7 +186,7 @@ public class Ataque {
         return hit.calculate();
     }
 
-    protected double calculoDano(Pokemon atacante, Pokemon atacado, double modificadorLevel) {
+    double calculoDano(Pokemon atacante, Pokemon atacado, double modificadorLevel) {
 
         AttackDamage instanciaAtual = new AttackDamage();
 
@@ -236,7 +243,7 @@ public class Ataque {
         return instanciaAtual.damage * util.Probabilidade.getRandom(217, 255) / 255;
     }
 
-    protected boolean calculoCritico(double speed) {
+    boolean calculoCritico(double speed) {
         return Probabilidade.calcula(speed / 512);
     }
 
